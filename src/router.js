@@ -9,7 +9,7 @@ const routes = [
     {
         path: '/nav',
         name: 'Nav',
-        component: () => import('./components/blog/common/Navigation.vue')
+        component: () => import('./components/blog/List.vue')
     }
 ];
 
