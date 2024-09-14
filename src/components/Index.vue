@@ -1,4 +1,5 @@
 <template>
+  <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>
   <!--导航-->
   <div class="nav">
     <div id="menu" :class="menuClasses" @click="toggleMenu">
@@ -163,7 +164,7 @@ import { layRow, layIcon } from '@layui/layui-vue';
 import WOW from 'wow.js'
 
 export default {
-  name: 'IndexDemo',
+  name: 'IndexHome',
   components: {
     layRow, layIcon
   },

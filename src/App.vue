@@ -1,6 +1,5 @@
 <template>
-<!--  <GlobalBackground />-->
-  <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>
+<!--  <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>-->
   <router-view />
 </template>
 

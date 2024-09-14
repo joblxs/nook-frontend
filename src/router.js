@@ -5,6 +5,11 @@ const routes = [
         path: '/',
         name: 'Index',
         component: () => import('./components/Index.vue')
+    },
+    {
+        path: '/nav',
+        name: 'Nav',
+        component: () => import('./components/blog/common/Navigation.vue')
     }
 ];
 
