@@ -39,11 +39,12 @@ a,img{text-decoration:none;border:none;}
 #section1{
     height: 100vh;
     padding: 0;
-    background-color: #151515;
-    background-image: url(https://visualhunt.com/photos/1/sunset-scenery-landscape-nature-plain-oregon.jpg);
+    /*background-color: #151515;*/
+    /*background-image: url(../images/xkbg.png);*/
+    background-color: rgba(0, 0, 0, 0.3);
     background-position: center;
     background-attachment: fixed;
-    background-repeat: no-repeat
+    background-repeat: no-repeat;
 }
 #section3{background-image:url(https://images.unsplash.com/photo-1551841462-31a28cf2c601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);background-position:center;background-attachment:fixed;background-repeat:no-repeat}
 #section4{background-color:#FAF9F9}
@@ -92,6 +93,7 @@ a,img{text-decoration:none;border:none;}
 /*第四屏开始*/
 .page4 .about{text-align: center;}
 .page4 .about h1{margin-bottom:20px;}
+.page4 .inner{color: #232328;}
 /*第四屏结束*/
 @media screen and (min-width: 768px){
     .page2 {width: 750px;}
