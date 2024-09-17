@@ -2,7 +2,7 @@
     <header class="grid-header">
         <div class="header-fixed">
             <div class="header-inner">
-                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
+                <a href="javascript:void(0)" class="header-logo" id="logo">Mr.li</a>
                 <nav class="nav" id="nav" v-bind:style="navStyle">
                     <ul>
                         <li v-for="link in navItems" :key="link.id" :class="{ current: isActive(link.href) }">
