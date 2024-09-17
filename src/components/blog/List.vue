@@ -48,6 +48,11 @@
                     </lay-row>
                 </lay-container>
             </div>
+            <div class="col-other">
+                <div class="inner">
+                    <Category></Category>
+                </div>
+            </div>
         </div>
     </div>
 </template>
@@ -56,6 +61,7 @@
 import '../../assets/css/master.css';
 import '../../assets/css/gloable.css';
 import Navigation from "./common/Navigation.vue";
+import Category from "./common/Category.vue";
 import {layIcon, layRow} from '@layui/layui-vue';
 export default {
     name: 'blogList',
@@ -86,7 +92,7 @@ export default {
         };
     },
     components: {
-        Navigation, layIcon, layRow
+        Navigation, Category, layIcon, layRow
     }
 }
 </script>
@@ -134,27 +140,6 @@ pre{white-space:pre}
 .article-item .content a:hover,.article-item .footer a:hover,.article-item .title a:hover,.article-item a:hover{color:#6bc30d;text-decoration:underline}
 .article-item .footer .tags .tag:hover{color:#fff;background:#6bc30d}
 .col-other{width:300px}
-.col-other .other-item{position:relative;background-color:#fff;margin-top:20px;overflow:hidden}
-.col-other .other-item .search{padding:20px;background-color:grey;position:relative}
-.col-other .other-item .search .search-wrap{display:block;height:40px;padding:0 20px;background-color:#fff;border-radius:40px;position:relative;z-index:5}
-.search .search-wrap input{border:none;height:40px;line-height:40px;width:100%;box-shadow:none;background-color:transparent}
-.search .search-wrap .search-icon{font-size:18px;position:absolute;width:30px;height:30px;line-height:30px;text-align:center;right:5px;top:5px;color:#787977;-webkit-transition:all .3s;transition:all .3s;cursor:pointer}
-.search .search-wrap .search-icon:hover{color:#6bc30d}
-.search .search-wrap .search-icon .icon-search:before{content:"\f002"}
-.search .search-result{position:absolute;top:40px;left:20px;right:20px;padding-top:30px;padding-bottom:20px;z-index:3;display:none;background-color:#fff;max-height:280px;overflow-y:auto;border:1px solid #e8e9e7;border-bottom-left-radius:10px;border-bottom-right-radius:10px}
-.search-result li a{padding:10px}
-.search-result li a:hover{background:#eaeaea}
-.col-other .other-item .category{position:relative;padding-bottom:20px}
-.col-other .other-item .category li{display:block;height:40px;line-height:39px;position:relative;z-index:1}
-.other-item .category li.slider{border-right:6px solid #484947;height:40px;background-color:#f8f9f7;position:absolute;top:0;left:0;right:0;z-index:0;transition:top .3s}
-.other-item .category li.child a{padding:0 50px;font-size:12px}
-.other-item .category li a{display:block;margin:0 30px;padding:0 20px;height:39px;border-bottom:1px solid #f8f9f7;transition:none;text-decoration:none;color:#787977}
- #categoryandsearch.fixed{position:fixed;top:auto;width:300px;margin-top:0;-webkit-animation-duration:1s;animation-duration:1s;-webkit-animation-fill-mode:both;animation-fill-mode:both;-webkit-animation-name:bounceInDown;animation-name:bounceInDown}
-.other-item-title{margin:10px 20px;padding:5px;line-height:30px;font-weight:400;border-bottom:1px solid #e8e9e7;color:#383937;position:relative;font-size:18px}
-.other-item .tags{margin:10px 15px}
-.other-item .tags a{display:inline-block;margin:5px 5px}
-.other-item .inner{margin:0 20px;padding-bottom:10px}
-.other-item .inner .hot-list-article li{display:block;line-height:32px;position:relative;margin:3px 0;counter-increment:nums;padding-left:30px;overflow:hidden;word-wrap:normal!important;white-space:nowrap;text-overflow:ellipsis}
 .hot-list-article li a{color:#787977}
 .hot-list-article li:before{width:22px;height:22px;line-height:22px;text-align:center;content:counter(nums,decimal);position:absolute;left:0;top:5px;border-radius:100%;background-color:#edefee;text-shadow:0 1px 0 rgba(255,255,255,.5);font-family:SourceCodeProRegular,Menlo,Monaco,Consolas,"Courier New",monospace,'Helvetica Neue',Arial,sans-serif}
 .hot-list-article li:first-child:before,.hot-list-article li:nth-child(2):before,.hot-list-article li:nth-child(3):before{color:#fff;text-shadow:none}
@@ -209,14 +194,10 @@ pre{white-space:pre}
 .vistor dd{position:relative;width:60px;height:65px;/*margin:10px 10px 0 0;*/display:inline-block;vertical-align:top;font-size:12px}
 .vistor dd a img{width:60px;height:60px;border-radius:2px}
 .vistor dd a cite{position:absolute;bottom:5px;left:0;width:100%;height:20px;line-height:20px;text-align:center;background-color:rgba(0,0,0,.2);color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.category-toggle{position:fixed;right:0;top:40%;width:15px;background:#009688;color:#fff;font-size:16px;padding:30px 0;z-index:9999}
 .categoryIn{-moz-animation:categoryIn .5s;-o-animation:categoryIn .5s;-webkit-animation:categoryIn .5s;animation:categoryIn .5s}
 .categoryOut{-moz-animation:categoryOut .5s;-o-animation:categoryOut .5s;-webkit-animation:categoryOut .5s;animation:categoryOut .5s}
-.article-category{position:fixed;top:60px;right:0;bottom:0;background:#393D49;color:#eee;width:160px;font-size:11px;padding:10px;margin:0;display:none;z-index:9}
-.article-category>.article-category-title{text-align:center;border-bottom:1px solid #009688;font-size:15px;font-weight:500;padding:0 0 5px 0;margin-bottom:5px}
-.article-category>a{display:block;color:#eee;padding:5px 1%;margin:4px 0;background:#009688;width:98%;text-align:center;line-height:19px;word-break:keep-all;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;float:left}
-.article-category>a:hover{background:#5FB878}
-.blog-mask{position:fixed;left:0;right:0;top:60px;bottom:0;background:rgba(0,0,0,.7);z-index:8}
+
+
 .maskIn{-moz-animation:maskFadeIn .5s;-o-animation:maskFadeIn .5s;-webkit-animation:maskFadeIn .5s;animation:maskFadeIn .5s}
 .maskOut{-moz-animation:maskFadeOut .5s;-o-animation:maskFadeOut .5s;-webkit-animation:maskFadeOut .5s;animation:maskFadeOut .5s}
 @-webkit-keyframes bounceInDown{0%,60%,75%,90%,to{transition-timing-function:cubic-bezier(.215,.61,.355,1)}
@@ -287,13 +268,8 @@ to{opacity:0}
 @-webkit-keyframes maskFadeOut{from{opacity:1}
 to{opacity:0}
 }
-@media screen and (min-width:1025px){.category-toggle{display:none}
-.article-category,.blog-mask{display:none!important}
-}
 @media screen and (max-width:1024px){.f-qq,.f-qzone{display:none}
-#categoryandsearch{display:none}
 .col-content,.col-other{width:100%;float:none}
-#categoryandsearch.fixed{position:initial;animation:none;-webkit-animation:none;transform:none;-webkit-transform:none;width:100%;margin-top:20px}
 }
 @media screen and (max-width:500px){.article-item .time{display:none}
 .article-item .title{padding-right:0}

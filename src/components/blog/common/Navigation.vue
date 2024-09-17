@@ -36,7 +36,7 @@ export default {
         const isNavVisible = ref(false); // 使用ref来响应式地跟踪导航的显示状态
         const navItems = ref([
             {id: 1, text: '首页', href: '/'},
-            {id: 2, text: '博客', href: '/nav'}, // 确保这里的路径是正确的
+            {id: 2, text: '博客', href: '/blog'}, // 确保这里的路径是正确的
             {id: 3, text: '留言', href: '/message'},
             {id: 4, text: '日记', href: '/diary'},
             {id: 5, text: '友链', href: '/friend-links'},

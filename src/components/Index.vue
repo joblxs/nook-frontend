@@ -10,7 +10,7 @@
         <div id="navigation" :class="navClasses">
             <ul class="navigation-point">
                 <li><a href="#">首页</a></li>
-                <li><a href="#">博客</a></li>
+                <li><a href="/blog">博客</a></li>
                 <li><a href="#">留言</a></li>
             </ul>
             <div class="navigation-logo"><a>Mr.li</a></div>
@@ -52,7 +52,7 @@
                             >
                                 <div class="single-news">
                                     <div class="news-head">
-                                        <img src="image/java.jpg" alt="Java专栏">
+                                        <img src="../assets/images/xkbg.png" alt="Java专栏">
                                         <a href="#" class="link">
                                             <lay-icon type="layui-icon-link"></lay-icon>
                                         </a>

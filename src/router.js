@@ -7,8 +7,8 @@ const routes = [
         component: () => import('./components/Index.vue')
     },
     {
-        path: '/nav',
-        name: 'Nav',
+        path: '/blog',
+        name: 'Blog',
         component: () => import('./components/blog/List.vue')
     }
 ];
