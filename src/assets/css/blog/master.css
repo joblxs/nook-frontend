@@ -74,4 +74,4 @@ body,html{background-color:rgba(255,255,255,.5);font:14px/1.5 "Helvetica neue",H
 .nav li{float:none;border-bottom:1px solid #e8e9e7}
 .nav li:last-child{border:0}
 }
-@font-face{font-family:BarbaraHand;src:url(../fonts/barbarahand-webfont.woff2) format('woff2');font-weight:400;font-style:normal}
+@font-face{font-family:BarbaraHand;src:url(../../fonts/barbarahand-webfont.woff2) format('woff2');font-weight:400;font-style:normal}

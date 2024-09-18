@@ -6,7 +6,8 @@
             <div class="col-content">
                 <lay-container fluid class="inner" style="padding: 0;">
                     <lay-row class="article-list bloglist" id="LAY_bloglist" space="10">
-                        <lay-col v-for="(blog, index) in blogItems" :key="index" md="11" sm="11" xs="24" class="article-item zoomIn article">
+                        <lay-col v-for="(blog, index) in blogItems" :key="index" md="11" sm="11" xs="23"
+                                 class="article-item zoomIn article">
                             <div class="fc-flag">置顶</div>
                             <h5 class="title">
                                 <span class="fc-blue">【原创】</span>
@@ -50,19 +51,95 @@
             </div>
             <div class="col-other">
                 <div class="inner">
-                    <Category></Category>
+                    <div class="other-item" id="categoryandsearch" :class="{ 'fixed': isFixed }">
+                        <div class="search">
+                            <label class="search-wrap">
+                                <input type="text" id="searchtxt" placeholder="输入关键字搜索"/>
+                                <span class="search-icon" @click="toggleSearchResults">
+                                    <i :class="['fa', { 'fa-search': !searchActive, 'fa-times': searchActive }]"></i>
+                                </span>
+                            </label>
+                            <ul class="search-result" v-if="searchActive"></ul>
+                        </div>
+                        <ul class="category mt20" id="category">
+                            <li data-index="0" class="slider"></li>
+                            <li v-for="(category) in categories" :key="category.id">
+                                <a :href="category.href">{{ category.name }}</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <!--右边悬浮 平板或手机设备显示-->
+                    <div class="category-toggle" ref="categoryToggle"  @click="categoryIn"><i class="layui-icon">&#xe603;</i></div>
+                    <div class="article-category" ref="articleCategory" :class="{ 'layui-hide': !categoryVisible }" @click="closeCategory">
+                        <div class="article-category-title">分类导航</div>
+                            <a v-for="category in categories" :key="category.id" :href="category.href">{{ category.name }}</a>
+                        <div class="f-cb"></div>
+                    </div>
+                    <!--遮罩-->
+                    <div class="blog-mask animated layui-hide" ref="blogMask" :class="{ 'layui-hide': !categoryVisible }" @click="closeCategory"></div>
+                    <div class="other-item">
+                        <h5 class="other-item-title">热门文章</h5>
+                        <div class="inner">
+                            <ul class="hot-list-article">
+                                <li><a href="/Blog/Read/9">SpringBoot 入门爬虫项目实战</a></li>
+                                <li><a href="/Blog/Read/12">SpringBoot 2.x 教你快速入门</a></li>
+                                <li><a href="/Blog/Read/13">java学习路线</a></li>
+                                <li><a href="/Blog/Read/4">基于SpringBoot+JWT+Redis跨域单点登录的实现</a></li>
+                                <li><a href="/Blog/Read/7">SpringBoot 中如何使用SwaggerAPI接口文档？</a></li>
+                                <li><a href="/Blog/Read/11">小白轻松入门Redis</a></li>
+                                <li><a href="/Blog/Read/14">微信一键登录功能的实现</a></li>
+                                <li><a href="/Blog/Read/8">NPOI导入导出Excel</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="other-item">
+                        <h5 class="other-item-title">置顶推荐</h5>
+                        <div class="inner">
+                            <ul class="hot-list-article">
+                                <li><a href="/Blog/Read/16">java学习路线</a></li>
+                                <li><a href="/Blog/Read/14">基于SpringBoot+JWT+Redis跨域单点登录的实现</a></li>
+                                <li><a href="/Blog/Read/9">小白轻松入门Redis</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="other-item">
+                        <h5 class="other-item-title">最近访客</h5>
+                        <div class="inner">
+                            <dl class="vistor">
+                                <dd v-for="visitor in visitors" :key="visitor.name">
+                                    <a href="javascript:;"><img :src="visitor.img"><cite>{{ visitor.name }}</cite></a>
+                                </dd>
+                            </dl>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+    <footer class="grid-footer">
+        <div class="footer-fixed">
+            <div class="copyright">
+                <div class="info">
+                    <div class="contact">
+                        <a href="javascript:void(0)" class="github" target="_blank"><i class="fa fa-github"></i></a>
+                        <a href="https://wpa.qq.com/msgrd?v=3&uin=930054439&site=qq&menu=yes" class="qq" target="_blank" title="930054439"><i class="fa fa-qq"></i></a>
+                        <a href="https://mail.qq.com/cgi-bin/qm_share?t=qm_mailme&email=gbiysbG0tbWyuMHw8K-i7uw" class="email" target="_blank" title="930054439@qq.com"><i class="fa fa-envelope"></i></a>
+                        <a href="javascript:void(0)" class="weixin"><i class="fa fa-weixin"></i></a>
+                    </div>
+                    <p class="mt05">
+                        Copyright &copy; 2019-2020 ZQ博客 All Rights Reserved V.3.1.3 Power by ZQ博客
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
 </template>
 
 <script>
-import '../../assets/css/master.css';
-import '../../assets/css/gloable.css';
 import Navigation from "./common/Navigation.vue";
-import Category from "./common/Category.vue";
 import {layIcon, layRow} from '@layui/layui-vue';
+import { ref, onMounted, onUnmounted, nextTick  } from 'vue';
+
 export default {
     name: 'blogList',
     data() {
@@ -87,194 +164,211 @@ export default {
                     summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
                     link: '#'
                 },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
+                {
+                    title: 'Java专栏',
+                    date: '2020年6月16日',
+                    summary: '本专栏主要分享Java的各种常见问题，包括java学习路线，java基础，框架，微服务，项目，面试题，希望通过这些知识的分享能够提升自己的java水平',
+                    link: '#'
+                },
                 // 重复的新闻项可以省略或替换为其他内容
             ]
         };
     },
     components: {
-        Navigation, Category, layIcon, layRow
+        Navigation, layIcon, layRow
+    },
+    setup() {
+        const categoryToggle = ref(null);
+        const articleCategory = ref(null);
+        const blogMask = ref(null);
+        const searchActive = ref(false);
+        const categoryVisible = ref(false);
+        const isFixed = ref(false);
+        const categories = ref([
+            {id: 1, name: '全部文章', href: '/Blog/Article', index: 1},
+            {id: 2, name: '技术分享', href: '/Blog/Tech', index: 2},
+            {id: 3, name: '生活随笔', href: '/Blog/Life', index: 3},
+            {id: 3, name: '生活随笔', href: '/Blog/Life', index: 3}
+            // ... 其他类别
+        ]);
+        const visitors = ref([
+            { name: 'Anonymous', img: 'image/a1.png' },
+            { name: 'Dekstra', img: 'image/a4.png' },
+            { name: '惜i', img: 'image/a2.png' },
+            { name: '↙Aㄨ计划 ◆莪↘', img: 'image/a3.png' },
+            { name: '.', img: 'image/a4.png' },
+            { name: 'Lambert.', img: 'image/a1.png' },
+            { name: '64ღ', img: 'image/a2.png' },
+            { name: 'doBoor', img: 'image/a3.png' },
+            { name: '毛毛小妖', img: 'image/a4.png' },
+            { name: 'NULL', img: 'image/a1.png' },
+            { name: '吓一跳', img: 'image/a2.png' },
+            { name: '如初', img: 'image/a3.png' },
+        ]);
+        const categoryIn = () => {
+            categoryVisible.value = true;
+            // 确保 DOM 已更新
+            nextTick(() => {
+                categoryToggle.value.classList.add('layui-hide');
+                articleCategory.value.classList.remove('categoryOut', 'layui-hide');
+                articleCategory.value.classList.add('categoryIn', 'layui-show');
+                blogMask.value.classList.remove('maskOut', 'layui-hide');
+                blogMask.value.classList.add('maskIn', 'layui-show');
+            });
+        };
+        const categoryOut = () => {
+            // 定义动画结束时的处理函数
+            const animationEndHandler = (event) => {
+                // 确保事件监听器只被调用一次
+                event.target.removeEventListener('animationend', animationEndHandler);
+
+                // 检查是否是预期的元素触发了动画结束事件
+                if (event.target === blogMask.value || event.target === articleCategory.value) {
+                    if (blogMask.value.classList.contains('maskOut') || articleCategory.value.classList.contains('categoryOut')) {
+                        blogMask.value.classList.add('layui-hide');
+                        categoryToggle.value.classList.remove('layui-hide');
+                        articleCategory.value.classList.remove('layui-show');
+                    }
+                }
+            };
+
+            // 添加事件监听器，以便在动画结束时执行操作
+            blogMask.value.addEventListener('animationend', animationEndHandler);
+            articleCategory.value.addEventListener('animationend', animationEndHandler);
+
+            // 触发动画
+            blogMask.value.classList.replace('maskIn', 'maskOut');
+            articleCategory.value.classList.replace('categoryIn', 'categoryOut');
+            categoryVisible.value = false;
+        };
+
+        const blogtype = () => {
+            const slider = ref(0); // 假设你有一个初始值
+            const categoryItems = ref(document.querySelectorAll('#category li'));
+
+            categoryItems.value.forEach((item, index) => {
+                item.addEventListener('mouseenter', () => {
+                    item.classList.add('current');
+                    slider.value = (index * 40) + 'px';
+                    document.querySelector('.slider').style.top = slider.value;
+                });
+                item.addEventListener('mouseleave', () => {
+                    item.classList.remove('current');
+                    document.querySelector('.slider').style.top = slider.value;
+                });
+            });
+
+            onMounted(() => {
+                window.addEventListener('scroll', handleScroll);
+            });
+
+            onUnmounted(() => {
+                window.removeEventListener('scroll', handleScroll);
+            });
+
+            const handleScroll = () => {
+                const winPos = window.pageYOffset || document.documentElement.scrollTop;
+                const categoryAndSearch = document.getElementById('categoryandsearch');
+                if (winPos > 750) {
+                    categoryAndSearch.classList.add('fixed');
+                } else {
+                    categoryAndSearch.classList.remove('fixed');
+                }
+            };
+        };
+
+        blogtype();
+
+        function toggleSearchResults() {
+            searchActive.value = !searchActive.value;
+        }
+
+        function toggleCategory() {
+            categoryVisible.value = !categoryVisible.value;
+        }
+
+        function handleScroll() {
+            const winPos = window.pageYOffset || document.documentElement.scrollTop;
+            isFixed.value = winPos > 750;
+        }
+
+        onMounted(() => {
+            window.addEventListener('scroll', handleScroll);
+        });
+
+        onUnmounted(() => {
+            window.removeEventListener('scroll', handleScroll);
+        });
+
+        const closeCategory = () => {
+            if (categoryVisible.value) {
+                // 这里可以添加动画结束的处理逻辑
+                categoryVisible.value = false;
+                categoryToggle.value.classList.remove('layui-hide');
+                categoryToggle.value.classList.add('layui-show');
+                // 如果有动画，可以在这里添加监听动画结束的逻辑
+            }
+        };
+
+        return {
+            categoryIn,
+            closeCategory,
+            categoryOut,
+            categoryToggle,
+            articleCategory,
+            blogMask,
+            categories,
+            searchActive,
+            categoryVisible,
+            visitors,
+            isFixed,
+            toggleSearchResults,
+            toggleCategory,
+        };
     }
 }
 </script>
 
+<style src="../../assets/css/blog/master.css"></style>
+<style src="../../assets/css/blog/gloable.css"></style>
+<style src="../../assets/css/blog/blog.css"></style>
+
 <style scoped>
-.header {
-    margin: 0 auto;
-    width: 100%;
-    height: 100%;
-    background-color: #2E2E2E;
-    position: fixed !important;
-    background-size: 100% 100%
-}
-pre{white-space:pre}
-.container-fixed:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-.col-content{float:left}
-.col-other{float:right}
-.col-content{width:calc(100% - 300px - 20px)}
-.article-list{position:relative}
-.bloglist .article-item{overflow:hidden;}
-.article-item{padding:20px 30px 25px 30px;position:relative;/*overflow:hidden;*/margin-top:20px;margin-right:10px;background-color:#fff}
-.article-item .fc-flag{position:absolute;height:20px;line-height:20px;text-align:center;width:74px;background-color:#ff5722;color:#fff;transform:rotate(-45deg);left:-18px;top:9px}
-.article-item .title{line-height:30px;padding:5px 130px 5px 0;border-bottom:1px solid #e8e9e7;font-size:18px;font-weight:400}
-.article-item .title span{font-size:16px;font-weight:400;display:inline-block;vertical-align:bottom}
-.article-item .title a{color:#212220}
-.article-item .time{font-family:SourceCodeProRegular,Menlo,Monaco,Consolas,"Courier New",monospace,'Helvetica Neue',Arial,sans-serif;position:absolute;right:10px;top:10px;background-color:#fff;padding:0 20px 5px 20px;line-height:32px}
-.article-item .time .day{display:block;text-align:center;font-weight:700;font-size:40px;color:#6bc30d;position:relative;top:2px}
-.article-item .time .month,.article-item .time .year{color:#989997}
-.article-item .content{margin:20px 0 0 0;line-height:28px;position:relative;min-height:200px;display: -webkit-box;-webkit-box-orient: vertical;-webkit-line-clamp: 3;overflow: hidden;}
-.article-item .artiledetail img:hover{box-shadow: 0 0 5px #333;}
-.article-item .content a{color:#3e8bc7;margin:0 2px}
-.article-item .content .cover{display:block;width:100%;height:180px;border:1px solid #e8e9e7;overflow:hidden;float:left;margin-right:20px}
-.article-item .content .cover img{display:block;width:100%!important;height:100%!important}
-.article-item .read-more{height:40px;line-height:40px;position:relative}
-.article-item .read-more:before{content:" ";display:inline-block;height:1px;top:20px;left:100px;right:0;position:absolute;background-color:#d0d0d0}
-.article-item .footer{color:#787977}
-.article-item .footer a{display:inline-block;vertical-align:middle;font-style:normal}
-.article-item .footer i{display:inline-block;vertical-align:middle;font-style:normal}
-.article-item .footer .tags-icon:before{content:"\f02c"}
-.article-item .footer .tags .tag{display:inline-block;font-size:12px;padding:2px 5px;background-color:#f1f2f0;color:#787977;margin:2px;text-decoration:none;-webkit-transition:all .2s;transition:all .2s}
-.article-item .footer .readicon{margin-right:3px;font-size:16px}
-.article-item .footer .readicon:before{content:"\f06e"}
-.article-item .footer .commenticon:before{content:"\f086"}
-.article-item .footer .num{font-family:SourceCodeProRegular,Menlo,Monaco,Consolas,"Courier New",monospace,'Helvetica Neue',Arial,sans-serif;display:inline-block;vertical-align:middle;font-style:normal}
-.article-item .content a:hover,.article-item .footer a:hover,.article-item .title a:hover,.article-item a:hover{color:#6bc30d;text-decoration:underline}
-.article-item .footer .tags .tag:hover{color:#fff;background:#6bc30d}
-.col-other{width:300px}
-.hot-list-article li a{color:#787977}
-.hot-list-article li:before{width:22px;height:22px;line-height:22px;text-align:center;content:counter(nums,decimal);position:absolute;left:0;top:5px;border-radius:100%;background-color:#edefee;text-shadow:0 1px 0 rgba(255,255,255,.5);font-family:SourceCodeProRegular,Menlo,Monaco,Consolas,"Courier New",monospace,'Helvetica Neue',Arial,sans-serif}
-.hot-list-article li:first-child:before,.hot-list-article li:nth-child(2):before,.hot-list-article li:nth-child(3):before{color:#fff;text-shadow:none}
-.hot-list-article li:first-child:before{background-color:#e24d46}
-.hot-list-article li:nth-child(2):before{background-color:#2ea7e0}
-.hot-list-article li:nth-child(3):before{background-color:#6bc30d}
-.hot-list-article li a:hover{text-decoration:underline;color:#6bc30d}
-.article-item .content h6{margin:20px 0;border-left:3px solid #6bc30d;min-height:26px;line-height:26px;padding:5px 20px;background-color:#f8f9f7;font-size:16px;font-weight:400;color:#585957;text-shadow:0 1px 0 rgba(255,255,255,.5);clear:both}
-.article-item .content .copyright{clear:both;background-color:#f8f9f7;padding:15px 20px;line-height:22px;text-shadow:0 1px 0 rgba(255,255,255,.8);font-size:12px;color:#787977}
-.article-item .content .copyright .f-toe{overflow:hidden;word-wrap:normal!important;white-space:nowrap;text-overflow:ellipsis}
-.article-item .content .copyright p{margin:0}
-.article-item .content .copyright p:after{content:".";display:block;height:0;clear:both;visibility:hidden}
-.article-item .content a{color:#3e8bc7;margin:0 2px}
-.article-item .content .copyright a{text-decoration:none}
-.article-item .content .b-relation li:before{content:"◈";margin-right:5px;color:#787977}
-.share{margin:30px 0 0 0;text-align:center;font-size:30px}
-.share ul{overflow:hidden;margin:0 auto;display:table}
-.share ul::after{clear:both}
-.share ul li{float:left;width:50px;height:50px;box-sizing:border-box;border:2px solid #e8e9e7;border-radius:50%;margin:0 10px;opacity:.75;transition:opacity .36s linear;cursor:pointer;position:relative;text-rendering:auto}
-.share ul li span{display:block;width:100%;height:100%;position:relative}
-.share ul li:hover{opacity:1}
-.share ul li.f-praise{border-color:#f46753}
-.share ul li.f-weinxi{border-color:#5ac64f}
-.share ul li.f-sina{border-color:#ff7171}
-.share ul li.f-qzone{border-color:#fbb611}
-.share ul li.f-qq{border-color:#14afff}
-.share ul li a{position:absolute;background:url(../../assets/images/xkbg.png) no-repeat;background-size:32px 160px;top:50%;left:50%;-webkit-transform:translate(-50%,-50%);transform:translate(-50%,-50%);margin:0}
-.share ul li .s-praise{background-position:0 -128px}
-.share ul li .s-weinxi{background-position:0 0}
-.share ul li .s-sina{background-position:0 -64px}
-.share ul li .s-qzone{background-position:0 -32px}
-.share ul li i{color:#14afff}
-.blog-comment{position:relative;margin-bottom:10px}
-.blog-comment img{width:22px;height:22px}
-.blog-comment li:first-child{border-top:1px dotted #bbb}
-.blog-comment li{border-bottom:1px dotted #bbb;padding:15px 0 10px 0}
-.blog-comment .comment-content,.blog-comment .info,.blog-comment .replycontainer{margin-left:53px}
-.blog-comment .info-footer{font-size:13px}
-.blog-comment .info,.blog-comment .replycontainer{padding-top:5px}
-.blog-comment .replycontainer .layui-form-item{margin-bottom:5px}
-.blog-comment .info {overflow-x:hidden}
-.blog-comment .info span{padding-right:5px}
-.blog-comment .info .username{color:#01AAED}
-.blog-comment .info .btn-reply{color:#009688}
-.blog-comment .comment-content{padding:2px 0 5px 0;min-height:30px;font-size:13px;word-break: break-all}
-.blog-comment hr{margin-left:53px}
-.comment-parent>img{width:45px;height:45px;margin:5px 5px 5px 0;position:absolute;border-radius:50px}
-.comment-child>img{width:40px;height:40px;margin:5px 5px 5px 0;position:absolute;border-radius:50px}
-.comment-child{margin-left:53px;min-height:50px}
-.comment-child .info{margin-left:48px;font-size:12px;line-height:20px}
-.vistor{text-align:center}
-.vistor dd{position:relative;width:60px;height:65px;/*margin:10px 10px 0 0;*/display:inline-block;vertical-align:top;font-size:12px}
-.vistor dd a img{width:60px;height:60px;border-radius:2px}
-.vistor dd a cite{position:absolute;bottom:5px;left:0;width:100%;height:20px;line-height:20px;text-align:center;background-color:rgba(0,0,0,.2);color:#fff;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
-.categoryIn{-moz-animation:categoryIn .5s;-o-animation:categoryIn .5s;-webkit-animation:categoryIn .5s;animation:categoryIn .5s}
-.categoryOut{-moz-animation:categoryOut .5s;-o-animation:categoryOut .5s;-webkit-animation:categoryOut .5s;animation:categoryOut .5s}
-
-
-.maskIn{-moz-animation:maskFadeIn .5s;-o-animation:maskFadeIn .5s;-webkit-animation:maskFadeIn .5s;animation:maskFadeIn .5s}
-.maskOut{-moz-animation:maskFadeOut .5s;-o-animation:maskFadeOut .5s;-webkit-animation:maskFadeOut .5s;animation:maskFadeOut .5s}
-@-webkit-keyframes bounceInDown{0%,60%,75%,90%,to{transition-timing-function:cubic-bezier(.215,.61,.355,1)}
-0%{opacity:0;-webkit-transform:translate3d(0,-3000px,0);transform:translate3d(0,-3000px,0)}
-60%{opacity:1;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}
-75%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}
-90%{-webkit-transform:translate3d(0,5px,0);transform:translate3d(0,5px,0)}
-to{-webkit-transform:none;transform:none}
-}
-@keyframes bounceInDown{0%,60%,75%,90%,to{transition-timing-function:cubic-bezier(.215,.61,.355,1)}
-0%{opacity:0;-webkit-transform:translate3d(0,-3000px,0);transform:translate3d(0,-3000px,0)}
-60%{opacity:1;-webkit-transform:translate3d(0,25px,0);transform:translate3d(0,25px,0)}
-75%{-webkit-transform:translate3d(0,-10px,0);transform:translate3d(0,-10px,0)}
-90%{-webkit-transform:translate3d(0,5px,0);transform:translate3d(0,5px,0)}
-to{-webkit-transform:none;transform:none}
-}
-@-webkit-keyframes drop{0%{-webkit-transform:translate3d(0,-600px,0)}
-60%{-webkit-transform:translate3d(0,25px,0)}
-75%{-webkit-transform:translate3d(0,-10px,0)}
-90%{-webkit-transform:translate3d(0,5px,0)}
-100%{-webkit-transform:translate3d(0,0,0)}
-}
-@keyframes drop{0%{transform:translate3d(0,-600px,0)}
-60%{transform:translate3d(0,25px,0)}
-75%{transform:translate3d(0,-10px,0)}
-90%{transform:translate3d(0,5px,0)}
-100%{transform:translate3d(0,0,0)}
-}
-@-webkit-keyframes spin{0%{-webkit-transform:rotate(0)}
-100%{-webkit-transform:rotate(359deg)}
-}
-@keyframes spin{0%{transform:rotate(0)}
-100%{transform:rotate(359deg)}
-}
-@keyframes categoryIn{from{right:-180px}
-to{right:0}
-}
-@-moz-keyframes categoryIn{from{right:-180px}
-to{right:0}
-}
-@-webkit-keyframes categoryIn{from{right:-180px}
-to{right:0}
-}
-@keyframes categoryOut{from{right:0}
-to{right:-180px}
-}
-@-moz-keyframes categoryOut{from{right:0}
-to{right:-180px}
-}
-@-webkit-keyframes categoryOut{from{right:0}
-to{right:-180px}
-}
-@keyframes maskFadeIn{from{opacity:0}
-to{opacity:1}
-}
-@-moz-keyframes maskFadeIn{from{opacity:0}
-to{opacity:1}
-}
-@-webkit-keyframes maskFadeIn{from{opacity:0}
-to{opacity:1}
-}
-@keyframes maskFadeOut{from{opacity:1}
-to{opacity:0}
-}
-@-moz-keyframes maskFadeOut{from{opacity:1}
-to{opacity:0}
-}
-@-webkit-keyframes maskFadeOut{from{opacity:1}
-to{opacity:0}
-}
-@media screen and (max-width:1024px){.f-qq,.f-qzone{display:none}
-.col-content,.col-other{width:100%;float:none}
-}
-@media screen and (max-width:500px){.article-item .time{display:none}
-.article-item .title{padding-right:0}
-.col-content,.col-other{padding:0 0}
-.article-item .content .cover{width:100%;height:auto;float:none;margin-bottom:10px}
-}
 
 </style>

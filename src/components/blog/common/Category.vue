@@ -2,7 +2,8 @@
     <div class="other-item" id="categoryandsearch" :class="{ fixed: isFixed }">
         <div class="search">
             <label class="search-wrap">
-                <input type="text" id="searchtxt" placeholder="输入关键字搜索" v-model="searchText" @input="updateSearchResults" />
+                <input type="text" id="searchtxt" placeholder="输入关键字搜索" v-model="searchText"
+                       @input="updateSearchResults"/>
                 <span class="search-icon" @click="clearSearch">
                     <i class="fa fa-search" :class="{ 'fa-times': searchText.length > 0 }"></i>
                 </span>
@@ -16,7 +17,7 @@
         </div>
         <ul class="category mt20" id="category">
             <li data-index="0" class="slider" :style="{ top: sliderTop + 'px' }"></li>
-            <li v-for="(category, index) in categories" :key="category.id" 
+            <li v-for="(category, index) in categories" :key="category.id"
                 @mouseover="handleCategoryHover(index)" @mouseleave="handleCategoryLeave">
                 <a :href="category.href">{{ category.name }}</a>
             </li>
@@ -26,24 +27,26 @@
     <div class="category-toggle" @click="toggleCategory"><i class="layui-icon">&#xe603;</i></div>
     <div class="article-category" v-show="isCategoryVisible">
         <div class="article-category-title">分类导航</div>
-            <a v-for="category in categories" :key="category.id" :href="category.href">{{ category.name }}</a>
+        <a v-for="category in categories" :key="category.id" :href="category.href">{{ category.name }}</a>
         <div class="f-cb"></div>
     </div>
     <div class="blog-mask" v-show="isCategoryVisible" @click="toggleCategory"></div>
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted, computed } from 'vue';
+import {ref, onMounted, onUnmounted, computed} from 'vue';
+
 // 防抖函数实现
 function debounce(func, wait) {
-  let timeout;
-  return function() {
-    clearTimeout(timeout);
-    timeout = setTimeout(() => {
-      func.apply(this, arguments);
-    }, wait);
-  };
+    let timeout;
+    return function () {
+        clearTimeout(timeout);
+        timeout = setTimeout(() => {
+            func.apply(this, arguments);
+        }, wait);
+    };
 }
+
 export default {
     name: 'CateCommon',
     setup() {
@@ -55,9 +58,9 @@ export default {
         const isFixed = ref(false);
         const isCategoryVisible = ref(false);
         const categories = ref([
-            { id: 1, name: '全部文章', href: '/Blog/Article', index: 1 },
-            { id: 2, name: '技术分享', href: '/Blog/Tech', index: 2 },
-            { id: 3, name: '生活随笔', href: '/Blog/Life', index: 3 },
+            {id: 1, name: '全部文章', href: '/Blog/Article', index: 1},
+            {id: 2, name: '技术分享', href: '/Blog/Tech', index: 2},
+            {id: 3, name: '生活随笔', href: '/Blog/Life', index: 3},
             // ... 其他类别
         ]);
 
@@ -74,7 +77,7 @@ export default {
         };
 
         const updateSearchResults = () => {
-        // 这里可以添加搜索逻辑来更新 searchResults
+            // 这里可以添加搜索逻辑来更新 searchResults
             searchResults.value = [
                 // 假设的搜索结果
                 '搜索结果1',
