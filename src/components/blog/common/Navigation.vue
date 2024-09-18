@@ -76,144 +76,26 @@ export default {
 </script>
 
 <style scoped>
-a, img {
-    text-decoration: none;
-    border: none
-}
-
-button, input, textarea {
-    outline: 0;
-    border: none;
-    font: 14px/1.5 "Microsoft YaHei", "微软雅黑", "Helvetica Neue", "Hiragino Sans GB", Helvetica, Tahoma, sans-serif;
-    color: #515250
-}
-
-h4 {
-    font-size: 20px
-}
-
-li {
-    list-style: none
-}
-
-body, html {
-    background-color: rgba(255, 255, 255, .5);
-    font: 14px/1.5 "Helvetica neue", Helvetica, Tahoma, "lantinghei sc", "Microsoft Yahei", sans-serif;
-    color: #515250;
-    -webkit-font-smoothing: antialiased;
-    -webkit-backface-visibility: hidden;
-    overflow-x: hidden
-}
-.grid-header {
-    width: 100%;
-    min-height: 60px;
-    position: fixed;
-    background-color: rgba(255, 255, 255, 1);
-    z-index: 11002;
-    top: 0;
-    left: 0;
-    border-bottom: 1px solid #e8e9e7;
-    font-size: 14px
-}
-
-.container-fixed, .footer-fixed, .header-fixed {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative
-}
-
-.header-inner {
-    margin-left: 10px;
-    margin-right: 10px;
-    position: relative
-}
-
-.header-logo {
-    font-family: BarbaraHand;
-    font-size: 40px;
-    color: #444647;
-    text-align: center;
-    position: absolute;
-    left: 0
-}
-
-.nav {
-    display: block;
-    position: absolute;
-    right: 15%
-}
-
-.nav ul {
-    list-style-type: none;
-    padding: 0;
-}
-
-.nav li {
-    display: block;
-    float: left;
-    margin: 10px 5px;
-    position: relative
-}
-
-.nav li:before {
-    width: 0;
-    height: 2px;
-    position: absolute;
-    bottom: -11px;
-    left: 50%;
-    background-color: #6bc30d;
-    content: "";
-    transition: all .6s;
-    z-index: -1
-}
-
-.nav li a:hover {
-    color: #6bc30d;
-}
-
-.nav li a {
-    display: block;
-    line-height: 32px;
-    padding: 4px 28px;
-    color: #212220;
-    font-weight: 400;
-    font-size: 15px;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
-    -webkit-transition: all .2s;
-    transition: all .2s
-}
-
-.nav .current:before {
-    width: 100%;
-    left: 0
-}
-
-.nav .current a {
-    color: #6bc30d
-}
-
-.blog-user {
-    position: absolute;
-    line-height: 60px;
-    font-size: 30px
-}
-
-.blog-user > img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px
-}
-
-.phone-menu {
-    width: 50px;
-    height: 50px;
-    display: inline-block;
-    position: absolute;
-    cursor: pointer;
-    right: 0;
-    top: 5px
-}
+a, img {text-decoration: none;border: none}
+button, input, textarea {outline: 0;border: none;font: 14px/1.5 "Microsoft YaHei", "微软雅黑", "Helvetica Neue", "Hiragino Sans GB", Helvetica, Tahoma, sans-serif;color: #515250}
+h4 {font-size: 20px}
+li {list-style: none}
+body, html {background-color: rgba(255, 255, 255, .5);font: 14px/1.5 "Helvetica neue", Helvetica, Tahoma, "lantinghei sc", "Microsoft Yahei", sans-serif;color: #515250;-webkit-font-smoothing: antialiased;-webkit-backface-visibility: hidden;overflow-x: hidden}
+.grid-header {width: 100%;min-height: 60px;position: fixed;background-color: rgba(255, 255, 255, 1);z-index: 11002;top: 0;left: 0;border-bottom: 1px solid #e8e9e7;font-size: 14px}
+.container-fixed, .footer-fixed, .header-fixed {width: 1280px;margin-left: auto;margin-right: auto;position: relative}
+.header-inner {margin-left: 10px;margin-right: 10px;position: relative}
+.header-logo {font-family: BarbaraHand;font-size: 40px;color: #444647;text-align: center;position: absolute;left: 0}
+.nav {display: block;position: absolute;right: 15%}
+.nav ul {list-style-type: none;padding: 0;}
+.nav li {display: block;float: left;margin: 10px 5px;position: relative}
+.nav li:before {width: 0;height: 2px;position: absolute;bottom: -11px;left: 50%;background-color: #6bc30d;content: "";transition: all .6s;z-index: -1}
+.nav li a:hover {color: #6bc30d;}
+.nav li a {display: block;line-height: 32px;padding: 4px 28px;color: #212220;font-weight: 400;font-size: 15px;text-shadow: 0 1px 0 rgba(255, 255, 255, .2);-webkit-transition: all .2s;transition: all .2s}
+.nav .current:before {width: 100%;left: 0}
+.nav .current a {color: #6bc30d}
+.blog-user {position: absolute;line-height: 60px;font-size: 30px}
+.blog-user > img {border-radius: 50%;width: 40px;height: 40px}
+.phone-menu {width: 50px;height: 50px;display: inline-block;position: absolute;cursor: pointer;right: 0;top: 5px}
 
 .phone-menu i {
     background: #787977;

@@ -5,7 +5,6 @@ import Layui from '@layui/layui-vue'
 import '@layui/layui-vue/lib/index.css';
 import 'animate.css';
 
-// createApp(App).mount('#app')
 const app = createApp(App);
 app.use(router);
 app.use(Layui);
