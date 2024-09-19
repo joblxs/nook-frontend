@@ -16,51 +16,28 @@
 </template>
 
 <script>
-import {ref, computed, onMounted} from 'vue';
+import {ref, computed} from 'vue';
 
 export default {
     name: 'NavHome',
-    components: {
-
-    },
     setup() {
         const nextButton = ref(null);
         const menuClosed = ref(true);
-        const scrollToNextSection = () => {
-            // 滚动到id为'section1'的元素
-            const section1 = document.getElementById('section2');
-            if (section1) {
-                section1.scrollIntoView({behavior: 'smooth'});
-            }
-        };
 
         const toggleMenu = () => {
             menuClosed.value = !menuClosed.value;
         };
 
         const menuClasses = computed(() => ({
-            'hover_animation': true,
-            'menu_close': !menuClosed.value,
-            'menu_open': menuClosed.value,
+            'hover_animation': true, 'menu_close': !menuClosed.value, 'menu_open': menuClosed.value,
         }));
 
         const navClasses = computed(() => ({
-            'navigation': true,
-            'navigation_close': menuClosed.value,
-            'navigation_open': !menuClosed.value,
+            'navigation': true, 'navigation_close': menuClosed.value, 'navigation_open': !menuClosed.value,
         }));
 
-        onMounted(() => {
-            // 如果你需要在组件挂载后立即绑定事件，可以在这里添加
-        });
-
         return {
-            menuClosed,
-            toggleMenu,
-            menuClasses,
-            navClasses,
-            nextButton,
-            scrollToNextSection
+            menuClosed, toggleMenu, menuClasses, navClasses, nextButton
         };
     }
 }
@@ -96,4 +73,8 @@ export default {
 .navigation-logo a{font-family:BarbaraHand;color:#686967;text-decoration:none}
 .navigation_open .navigation-logo{display:block}
 .navigation_close .navigation-logo{display:none}
+@media screen and (max-width:768px){
+    .navigation:before,.navigation:before,.navigation_close:before{width:50%;transform: none;-webkit-transform:none;}
+    .logo{width: 50%;padding: 0;text-align: center;}
+}
 </style>
