@@ -1,28 +1,39 @@
 <template>
     <div class="section">
-        <div class="fp-tablecell">
-            <div class="page">
-                <div class="warp-box">
-                    <div class="warp">
-                        <div class="inner">
-                            <div class="links">
-                                <ul>
-                                    <li class="wow animate__animated animate__backInLeft"><a href="#">关于</a></li>
-                                    <li class="wow animate__animated animate__backInRight"><a href="#">+友情链接</a>
-                                    </li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        <div class="links">
+            <ul>
+                <li class="wow animate__animated animate__backInLeft" v-for="(site, index) in siteItems" :key="index">
+                    <a :href="site.link"><lay-icon :type="site.icon" style="margin-right: 10px;"></lay-icon>{{site.title}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'FooterHome'
+    name: 'FooterHome',
+    data() {
+        return {
+            siteItems: [
+                {
+                    title: '个人主页',
+                    icon: 'layui-icon-home',
+                    link: 'https://lxshuai.top/'
+                },
+                {
+                    title: '博客',
+                    icon: 'layui-icon-template',
+                    link: 'https://www.lxshuai.top/'
+                },
+                {
+                    title: '图床',
+                    icon: 'layui-icon-carousel',
+                    link: 'https://pic.lxshuai.top/'
+                },
+            ]
+        };
+    },
 }
 </script>
 
@@ -34,37 +45,16 @@ export default {
     width: 100%;
     position: relative;
     padding: 100px 0;
-    background-image: url(https://images.unsplash.com/photo-1551841462-31a28cf2c601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+    /* background-image: url(https://pic.lxshuai.top/i/2024/05/21/664ca44165f63.webp); */
+    background-color:rgba(0,0,0,.5);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    background-size: cover
-}
-
-.section:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%; /*background-color:rgba(0,0,0,.5)*/
-}
-
-.fp-tablecell {
-    display: table-cell;
-    vertical-align: middle;
-    width: 100%;
-    height: 100%;
-    position: relative;
-    z-index: 1
-}
-
-.page .inner {
+    background-size: cover;
     text-align: center;
 }
 
-.page .links li {
+.links li {
     display: inline-block;
     width: 200px;
     height: 46px;
@@ -77,9 +67,10 @@ export default {
     position: relative;
     text-align: center;
     overflow: hidden;
+    background-color: rgb(0, 0, 0, .3);
 }
 
-.page .links li a {
+.links li a {
     display: block;
     line-height: 26px;
     padding: 10px;
@@ -93,7 +84,7 @@ export default {
     z-index: 1;
 }
 
-.page .links li:after {
+.links li:after {
     content: '';
     width: 0;
     background-color: #6bc30d;
@@ -106,12 +97,12 @@ export default {
     transition: all .6s linear;
 }
 
-.page .links li:hover {
+.links li:hover {
     border-color: #fff;
     color: #fff;
 }
 
-.page .links li:hover:after {
+.links li:hover:after {
     width: 100%;
 }
 </style>

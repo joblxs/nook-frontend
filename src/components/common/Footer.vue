@@ -1,5 +1,5 @@
 <template>
-    <div class="footer wow animate__animated animate__bounceInUp">
+    <div class="footer">
         <div class="copyright">
             <lay-container fluid>
                 <lay-row class="layui-row">
@@ -57,7 +57,7 @@ export default {
 
 <style scoped>
 .footer {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, .3);
     width: 100%;
     text-align: center;
     padding: 20px 0;
