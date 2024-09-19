@@ -1,7 +1,7 @@
 <template>
-    <div class="section" id="section3">
+    <div class="section">
         <div class="fp-tablecell">
-            <div class="page3">
+            <div class="page">
                 <div class="warp-box">
                     <div class="warp">
                         <div class="inner">
@@ -33,7 +33,22 @@ export default {
     table-layout: fixed;
     width: 100%;
     position: relative;
-    padding: 100px 0
+    padding: 100px 0;
+    background-image: url(https://images.unsplash.com/photo-1551841462-31a28cf2c601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover
+}
+
+.section:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 0;
+    width: 100%;
+    height: 100%; /*background-color:rgba(0,0,0,.5)*/
 }
 
 .fp-tablecell {
@@ -45,29 +60,11 @@ export default {
     z-index: 1
 }
 
-#section3 {
-    background-image: url(https://images.unsplash.com/photo-1551841462-31a28cf2c601?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1650&q=80);
-    background-position: center;
-    background-attachment: fixed;
-    background-repeat: no-repeat;
-    background-size: cover
-}
-
-#section3:after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 0;
-    width: 100%;
-    height: 100%; /*background-color:rgba(0,0,0,.5)*/
-}
-
-.page3 .inner {
+.page .inner {
     text-align: center;
 }
 
-.page3 .links li {
+.page .links li {
     display: inline-block;
     width: 200px;
     height: 46px;
@@ -82,7 +79,7 @@ export default {
     overflow: hidden;
 }
 
-.page3 .links li a {
+.page .links li a {
     display: block;
     line-height: 26px;
     padding: 10px;
@@ -96,7 +93,7 @@ export default {
     z-index: 1;
 }
 
-.page3 .links li:after {
+.page .links li:after {
     content: '';
     width: 0;
     background-color: #6bc30d;
@@ -109,12 +106,12 @@ export default {
     transition: all .6s linear;
 }
 
-.page3 .links li:hover {
+.page .links li:hover {
     border-color: #fff;
     color: #fff;
 }
 
-.page3 .links li:hover:after {
+.page .links li:hover:after {
     width: 100%;
 }
 </style>
