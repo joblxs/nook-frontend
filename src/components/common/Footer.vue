@@ -1,10 +1,11 @@
 <template>
-    <div class="footer wow fadeInUp">
+    <div class="footer wow animate__animated animate__bounceInUp">
         <div class="copyright">
             <lay-container fluid>
                 <lay-row class="layui-row">
                     <lay-col md="24" sm="24" xs="24">
                         <div class="uptime">{{ uptime }}</div>
+                        <br/>
                         <p>Copyright &copy; 个人主页 All Rights Reserved
                             <a href="http://www.beian.miit.gov.cn" target="_blank" rel="nofollow" style="color: #fff">冀ICP备2024067055号</a>
                         </p>
@@ -16,7 +17,8 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
+import {ref, onMounted, onUnmounted} from 'vue';
+
 export default {
     name: 'FooterHome',
     setup() {
@@ -28,14 +30,12 @@ export default {
         function updateUptime() {
             const now = new Date();
             const diff = now - siteStartTime.value; // 计算时间差
-            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
-            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30)).toString().padStart(2, '0');
-            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24)).toString();
             const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
             const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
             const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
 
-            uptime.value = `本站已运行${years}年${months}月${days}天 ${hours}时${minutes}分${seconds}秒`;
+            uptime.value = `本站已运行${days}天 ${hours}时${minutes}分${seconds}秒`;
         }
 
         let timerID;
@@ -56,6 +56,11 @@ export default {
 </script>
 
 <style scoped>
-.footer {background-color: rgba(0,0,0,.5);width: 100%;text-align: center;padding:12px 0;}
-.footer .copyright p{font-size:14px}
+.footer {
+    background-color: rgba(0, 0, 0, .5);
+    width: 100%;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px
+}
 </style>
