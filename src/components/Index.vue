@@ -7,6 +7,9 @@
     <Banner/>
     <!--站点-->
     <Station/>
+    <!--底部-->
+    <Footer />
+
 
     <lay-tooltip position="left-start" content="返回顶部">
         <lay-backtop :bottom="140" circle size="small" bgcolor="#5FB878" iconSize="22" icon="layui-icon-top" ></lay-backtop>
@@ -23,14 +26,15 @@ import WOW from 'wow.js'
 import NavHome from "./common/NavHome.vue";
 import Banner from "./common/Banner.vue";
 import Station from "./common/Station.vue";
+import Footer from "./common/Footer.vue";
 
 export default {
     name: 'IndexHome',
     components: {
-        NavHome, Banner, Station
+        NavHome, Banner, Station, Footer
     },
     setup() {
-        const urls = ref(['/BackgroundCartoon.html', '/BackgroundDaytime.html', '/Backgroundnight.html']); // 存储URL的数组
+        const urls = ref(['/BackgroundDaytime.html', '/BackgroundCartoon.html', '/BackgroundNight.html', '/BackgroundCode.html']);
         const currentUrlIndex = ref(0); // 当前URL索引
         const iframeSrc = ref(urls.value[currentUrlIndex.value]);
 

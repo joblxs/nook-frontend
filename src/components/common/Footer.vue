@@ -1,0 +1,61 @@
+<template>
+    <div class="footer wow fadeInUp">
+        <div class="copyright">
+            <lay-container fluid>
+                <lay-row class="layui-row">
+                    <lay-col md="24" sm="24" xs="24">
+                        <div class="uptime">{{ uptime }}</div>
+                        <p>Copyright &copy; 个人主页 All Rights Reserved
+                            <a href="http://www.beian.miit.gov.cn" target="_blank" rel="nofollow" style="color: #fff">冀ICP备2024067055号</a>
+                        </p>
+                    </lay-col>
+                </lay-row>
+            </lay-container>
+        </div>
+    </div>
+</template>
+
+<script>
+import { ref, onMounted, onUnmounted } from 'vue';
+export default {
+    name: 'FooterHome',
+    setup() {
+        const uptime = ref('');
+
+        // 网站启动的时间戳
+        const siteStartTime = ref(new Date('2024-04-13 00:00:00'));
+
+        function updateUptime() {
+            const now = new Date();
+            const diff = now - siteStartTime.value; // 计算时间差
+            const years = Math.floor(diff / (1000 * 60 * 60 * 24 * 365));
+            const months = Math.floor((diff % (1000 * 60 * 60 * 24 * 365)) / (1000 * 60 * 60 * 24 * 30)).toString().padStart(2, '0');
+            const days = Math.floor((diff % (1000 * 60 * 60 * 24 * 30)) / (1000 * 60 * 60 * 24)).toString().padStart(2, '0');
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60)).toString().padStart(2, '0');
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60)).toString().padStart(2, '0');
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000).toString().padStart(2, '0');
+
+            uptime.value = `本站已运行${years}年${months}月${days}天 ${hours}时${minutes}分${seconds}秒`;
+        }
+
+        let timerID;
+        onMounted(() => {
+            updateUptime();
+            timerID = setInterval(updateUptime, 1000);
+        });
+
+        onUnmounted(() => {
+            clearInterval(timerID);
+        });
+
+        return {
+            uptime
+        };
+    }
+}
+</script>
+
+<style scoped>
+.footer {background-color: rgba(0,0,0,.5);width: 100%;text-align: center;padding:12px 0;}
+.footer .copyright p{font-size:14px}
+</style>

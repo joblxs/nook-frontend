@@ -6,9 +6,9 @@
             <p>只要朝着一个方向努力，一切都会变得得心应手</p>
         </div>
         <div class="station-site wow animate__animated animate__bounceIn">
-            <lay-container fluid>
+            <lay-checkcard-group fluid>
                 <lay-row space="30">
-                    <lay-col md="8" sm="12" xs="24" v-for="(site, index) in siteItems" :key="index">
+                    <lay-col md="6" sm="12" xs="24" v-for="(site, index) in siteItems" :key="index">
                         <lay-checkcard :title="site.title" @click="navigateTo(site.link)">
                             <template #avatar>
                                 <lay-icon :type="site.icon" color="#009688"  size="24px"></lay-icon>
@@ -16,7 +16,7 @@
                         </lay-checkcard>
                     </lay-col>
                 </lay-row>
-            </lay-container>
+            </lay-checkcard-group>
         </div>
     </div>
 </template>
@@ -36,6 +36,16 @@ export default {
                     title: '博客',
                     icon: 'layui-icon-template',
                     link: 'https://www.lxshuai.top/'
+                },
+                {
+                    title: '图床',
+                    icon: 'layui-icon-carousel',
+                    link: 'https://pic.lxshuai.top/'
+                },
+                {
+                    title: '图床',
+                    icon: 'layui-icon-carousel',
+                    link: 'https://pic.lxshuai.top/'
                 },
                 {
                     title: '图床',
@@ -62,7 +72,6 @@ export default {
 
 <style scoped>
 .station {
-    width:80%;
     justify-content: center;
     align-items: center;
     min-height: 100vh;
@@ -72,8 +81,6 @@ export default {
 }
 
 .station-title {
-    max-width: 800px;
-    width: 90%;
     text-align: center;
     margin-left: auto;
     margin-right: auto;
@@ -88,7 +95,6 @@ export default {
 
 .station-title h1:after {
     position: absolute;
-    width: 50px;
     height: 2px;
     content: "";
     left: 50%;
