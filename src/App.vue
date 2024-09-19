@@ -1,5 +1,4 @@
 <template>
-<!--  <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>-->
     <router-view />
 </template>
 

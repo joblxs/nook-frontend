@@ -1,5 +1,5 @@
 <template>
-    <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>
+    <iframe class="background-iframe" src="/BackgroundNight.html" frameborder="0"></iframe>
     <!--导航-->
     <div class="nav">
         <div id="menu" :class="menuClasses" @click="toggleMenu">

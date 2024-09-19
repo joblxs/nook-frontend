@@ -1,10 +1,13 @@
 <template>
-    <!--背景图-->
-    <iframe class="background-iframe" src="/GlobalBackground.html" frameborder="0"></iframe>
+    <!--背景-->
+    <iframe class="background-iframe" src="/BackgroundCartoon.html" frameborder="0"></iframe>
     <!--导航-->
-    <NavHome />
-    <!--banner 横幅-->
-    <Banner />
+    <NavHome/>
+    <!--横幅-->
+    <Banner/>
+    <!--站点-->
+    <Station/>
+    <lay-backtop :bottom="100" bgcolor="#5FB878" icon="layui-icon-up" circle></lay-backtop>
 </template>
 
 <script>
@@ -13,11 +16,12 @@ import WOW from 'wow.js'
 
 import NavHome from "./common/NavHome.vue";
 import Banner from "./common/Banner.vue";
+import Station from "./common/Station.vue";
 
 export default {
     name: 'IndexHome',
     components: {
-        NavHome, Banner
+        NavHome, Banner, Station
     },
     setup() {
         onMounted(() => {
@@ -36,5 +40,15 @@ export default {
 </script>
 
 <style>
-@font-face{font-family:'BarbaraHand';src:url('../assets/fonts/barbarahand-webfont.woff2') format('woff2');font-weight:normal;font-style:normal;}
+body {
+    color: #FFF !important;
+    font-family:"Microsoft YaHei"
+}
+
+@font-face {
+    font-family: 'BarbaraHand';
+    src: url('../assets/fonts/barbarahand-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 </style>
