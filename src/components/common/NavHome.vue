@@ -21,7 +21,6 @@ import {ref, computed} from 'vue';
 export default {
     name: 'NavHome',
     setup() {
-        const nextButton = ref(null);
         const menuClosed = ref(true);
 
         const toggleMenu = () => {
@@ -37,7 +36,7 @@ export default {
         }));
 
         return {
-            menuClosed, toggleMenu, menuClasses, navClasses, nextButton
+            menuClosed, toggleMenu, menuClasses, navClasses
         };
     }
 }
