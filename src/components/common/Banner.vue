@@ -18,11 +18,12 @@ export default {
     name: 'BannerHome',
     setup() {
         const scrollToNextSection = () => {
-            // 滚动到id为'section1'的元素
-            const section1 = document.getElementById('section2');
-            if (section1) {
-                section1.scrollIntoView({behavior: 'smooth'});
-            }
+            // 滚动到第二屏的位置
+            const nextSectionPosition = window.innerHeight;
+            window.scrollTo({
+                top: nextSectionPosition,
+                behavior: 'smooth'
+            });
         }
         return {
             scrollToNextSection
