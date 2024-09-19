@@ -1,17 +1,23 @@
 <template>
     <!--背景-->
-    <iframe class="background-iframe" src="/BackgroundCartoon.html" frameborder="0"></iframe>
+    <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>
     <!--导航-->
     <NavHome/>
     <!--横幅-->
     <Banner/>
     <!--站点-->
     <Station/>
-    <lay-backtop :bottom="100" bgcolor="#5FB878" icon="layui-icon-up" circle></lay-backtop>
+
+    <lay-tooltip position="left-start" content="返回顶部">
+        <lay-backtop :bottom="140" circle size="small" bgcolor="#5FB878" iconSize="22" icon="layui-icon-top" ></lay-backtop>
+    </lay-tooltip>
+    <lay-tooltip position="left-start" content="切换背景">
+        <lay-backtop :bottom="100" circle size="small" bgcolor="#5FB878" iconSize="22" :showHeight="0" @click="switchIframeSrc" icon="layui-icon-theme" disabled></lay-backtop>
+    </lay-tooltip>
 </template>
 
 <script>
-import {onMounted} from 'vue';
+import {ref, onMounted} from 'vue';
 import WOW from 'wow.js'
 
 import NavHome from "./common/NavHome.vue";
@@ -24,6 +30,15 @@ export default {
         NavHome, Banner, Station
     },
     setup() {
+        const urls = ref(['/BackgroundCartoon.html', '/BackgroundDaytime.html', '/Backgroundnight.html']); // 存储URL的数组
+        const currentUrlIndex = ref(0); // 当前URL索引
+        const iframeSrc = ref(urls.value[currentUrlIndex.value]);
+
+        const switchIframeSrc = () => {
+            currentUrlIndex.value = (currentUrlIndex.value + 1) % urls.value.length;
+            iframeSrc.value = urls.value[currentUrlIndex.value];
+        };
+
         onMounted(() => {
             new WOW({
                 boxClass: "wow", // 需要执行动画的元素的class
@@ -35,6 +50,10 @@ export default {
                 resetAnimation: true,
             }).init();
         });
+        return {
+            iframeSrc,
+            switchIframeSrc
+        };
     }
 }
 </script>
