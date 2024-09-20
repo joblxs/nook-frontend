@@ -60,14 +60,7 @@ export default {
         // 切换手机导航菜单的显示状态
         const toggleNavMenu = () => {
             const navMenu = document.getElementById('nav');
-            if (navMenu) {
-                // 检查当前的display属性，如果为空或不是'none'，则设置为'block'
-                if (navMenu.style.display === '' || navMenu.style.display === 'none') {
-                    navMenu.style.display = 'block';
-                } else {
-                    navMenu.style.display = 'none';
-                }
-            }
+            navMenu.style.display = navMenu.style.display === '' || navMenu.style.display === 'none' ? 'block' : 'none';
         };
 
         // 组件挂载后，根据当前页面设置激活的菜单项
