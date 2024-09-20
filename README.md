@@ -1,6 +1,6 @@
 # app-home
 
-> 基于ThinkPHP8 + vue3 的主页+博客系统
+> 基于 vue3 + layui-vue + vue-router + wow.js + animate.css 的主页+博客系统
 
 ## 安装依赖
 ```

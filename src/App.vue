@@ -29,6 +29,16 @@ export default {
 
 <style>
 * {margin: 0;padding: 0}
+body {
+    color: #FFF !important;
+    font-family:"Microsoft YaHei"
+}
+@font-face {
+    font-family: 'BarbaraHand';
+    src: url('@/assets/fonts/barbarahand-webfont.woff2') format('woff2');
+    font-weight: normal;
+    font-style: normal;
+}
 .background-iframe {
     position: fixed;
     top: 0;

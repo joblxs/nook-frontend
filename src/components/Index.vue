@@ -25,11 +25,11 @@
 import {ref, onMounted} from 'vue';
 import WOW from 'wow.js'
 
-import NavHome from "./common/NavHome.vue";
-import Banner from "./common/Banner.vue";
-import Station from "./common/Station.vue";
-import Hitokoto from "./common/Hitokoto.vue";
-import Footer from "./common/Footer.vue";
+import NavHome from "@/components/common/NavHome.vue";
+import Banner from "@/components/common/Banner.vue";
+import Station from "@/components/common/Station.vue";
+import Hitokoto from "@/components/common/Hitokoto.vue";
+import Footer from "@/components/common/Footer.vue";
 
 export default {
     name: 'IndexHome',
@@ -66,15 +66,5 @@ export default {
 </script>
 
 <style>
-body {
-    color: #FFF !important;
-    font-family:"Microsoft YaHei"
-}
 
-@font-face {
-    font-family: 'BarbaraHand';
-    src: url('../assets/fonts/barbarahand-webfont.woff2') format('woff2');
-    font-weight: normal;
-    font-style: normal;
-}
 </style>
