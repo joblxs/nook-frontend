@@ -1,43 +1,45 @@
 <template>
-    <div class="navigation">
-        <!-- 网站logo -->
-        <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
-        <!-- 导航菜单 -->
-        <nav class="nav" id="nav">
-            <ul>
-                <!-- 动态生成导航菜单项 -->
-                <li v-for="item in navItems" :key="item.href" :class="{ 'current': isActive(item.href) }"
-                    @mouseenter="setActive(item.href)" @mouseleave="removeActive(item.href)">
-                    <a :href="item.href">{{ item.text }}</a>
-                </li>
-            </ul>
-        </nav>
-        <!-- QQ登录按钮 -->
-        <a href="/User/QQLogin" class="blog-user">
-            <i class="fa fa-qq"></i>
-        </a>
-        <!-- 手机菜单按钮 -->
-        <a class="phone-menu" @click="toggleNavMenu">
-            <i></i>
-            <i></i>
-            <i></i>
-        </a>
+    <div class="header-fixed">
+        <div class="navigation">
+            <!-- 网站logo -->
+            <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
+            <!-- 导航菜单 -->
+            <nav class="nav" id="nav">
+                <ul>
+                    <!-- 动态生成导航菜单项 -->
+                    <li v-for="item in navItems" :key="item.href" :class="{ 'current': isActive(item.href) }"
+                        @mouseenter="setActive(item.href)" @mouseleave="removeActive(item.href)">
+                        <a :href="item.href">{{ item.text }}</a>
+                    </li>
+                </ul>
+            </nav>
+            <!-- QQ登录按钮 -->
+            <a href="#" class="blog-user">
+                <lay-icon type="layui-icon-search"></lay-icon>
+            </a>
+            <!-- 手机菜单按钮 -->
+            <a class="phone-menu" @click="toggleNavMenu">
+                <i></i>
+                <i></i>
+                <i></i>
+            </a>
+        </div>
     </div>
 </template>
 
 <script>
-import { ref, onMounted } from 'vue';
+import {ref, onMounted} from 'vue';
 
 export default {
     name: 'NavCommon',
     setup() {
         // 导航菜单项数据
         const navItems = ref([
-            { href: 'index.html', text: '首页' },
-            { href: '/blog', text: '博客' },
-            { href: 'message.html', text: '留言' },
-            { href: 'diary.html', text: '日记' },
-            { href: 'link.html', text: '友链' },
+            {href: 'index.html', text: '首页'},
+            {href: '/blog', text: '博客'},
+            {href: 'message.html', text: '留言'},
+            {href: 'diary.html', text: '日记'},
+            {href: 'link.html', text: '友链'},
         ]);
         const activeItem = ref('');
         const tempActiveItem = ref('');
@@ -48,7 +50,9 @@ export default {
         };
 
         // 设置当前激活的菜单项
-        const setActive = (href) => {tempActiveItem.value = href;};
+        const setActive = (href) => {
+            tempActiveItem.value = href;
+        };
 
         // 移除当前激活的菜单项
         const removeActive = (href) => {
@@ -87,7 +91,7 @@ export default {
 </script>
 
 <style scoped>
-.navigation {
+.header-fixed {
     width: 100%;
     min-height: 60px;
     position: fixed;
@@ -98,6 +102,13 @@ export default {
     border-bottom: 1px solid #e8e9e7;
     margin-left: 10px;
     margin-right: 10px;
+}
+
+.navigation {
+    width: 1280px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative
 }
 
 .header-logo {
@@ -213,7 +224,7 @@ export default {
 }
 
 @media screen and (max-width: 1366px) {
-    .container-fixed, .footer-fixed, .header-fixed {
+    .navigation {
         width: 90%
     }
 
@@ -227,6 +238,10 @@ export default {
 }
 
 @media screen and (max-width: 1024px) {
+    .navigation {
+        width: 90%
+    }
+
     .header-logo {
         left: 25%;
         width: 50%
