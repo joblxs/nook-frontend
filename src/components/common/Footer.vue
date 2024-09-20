@@ -3,7 +3,7 @@
         <div class="copyright">
             <lay-container fluid>
                 <lay-row class="layui-row">
-                    <lay-col md="24" sm="24" xs="24">
+                    <lay-col md="24" sm="24" xs="24" class="hitokoto wow animate__animated animate__backInDown">
                         <div class="uptime">{{ uptime }}</div>
                         <br/>
                         <p>Copyright &copy; 个人主页 All Rights Reserved
@@ -61,6 +61,10 @@ export default {
     width: 100%;
     text-align: center;
     padding: 20px 0;
-    font-size: 14px
+}
+.layui-row {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
 }
 </style>

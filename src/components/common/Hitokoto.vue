@@ -5,9 +5,9 @@
 <!--            <p class="date">{{ date }}</p>-->
 <!--            <p class="time">{{ time }}</p>-->
 <!--        </div>-->
-        <div class="hitokoto">
-            <h1 class="wow animate__animated animate__flip">ZQ个人博客</h1>
-            <p class="wow animate__animated animate__flip">
+        <div class="hitokoto wow animate__animated animate__jello">
+            <h1>lxs个人博客</h1>
+            <p>
                 一天很短，开心了就笑，不开心了就过会儿再笑。
             </p>
         </div>
@@ -61,6 +61,27 @@ export default {
 </script>
 
 <style scoped>
+.section {
+    width: 100%;
+    padding: 100px 0;
+    background-color:rgba(0,0,0,.3);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+}
+.hitokoto {
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+}
+.hitokoto h1 {
+    font-size: 2.5rem;
+}
+.hitokoto p {
+    font-size: 1rem;
+    letter-spacing: 0.5rem;
+    margin: 1rem 0;
+}
 .clock {
     margin-bottom:20px;
     text-align: center;
@@ -75,11 +96,22 @@ export default {
     letter-spacing: 0.1em;
     font-size: 24px;
 }
-.section {
-    width: 100%;
-    padding: 100px 0;
-    background-color:rgba(0,0,0,.3);
-    text-align: center;
+@media (max-width: 768px) {
+    .hitokoto h1 {
+        font-size: 2rem;
+    }
+    .hitokoto p {
+        font-size: 0.9rem;
+        letter-spacing: 0.3rem;
+    }
 }
-.hitokoto h1{margin-bottom:20px;}
+@media (max-width: 480px) {
+    .hitokoto h1 {
+        font-size: 1.5rem;
+    }
+    .hitokoto p {
+        font-size: 0.8rem;
+        letter-spacing: 0.2rem;
+    }
+}
 </style>

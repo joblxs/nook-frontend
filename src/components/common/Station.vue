@@ -2,7 +2,7 @@
     <div class="section">
         <div class="links">
             <ul>
-                <li class="wow animate__animated animate__backInLeft" v-for="(site, index) in siteItems" :key="index">
+                <li class="wow animate__animated animate__lightSpeedInLeft" v-for="(site, index) in siteItems" :key="index">
                     <a :href="site.link"><lay-icon :type="site.icon" style="margin-right: 10px;"></lay-icon>{{site.title}}</a>
                 </li>
             </ul>

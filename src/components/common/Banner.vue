@@ -1,7 +1,7 @@
 <!--横幅-->
 <template>
     <div class="banner">
-        <div class="nav wow animate__animated animate__swing" data-wow-duration="2s">
+        <div class="nav wow animate__animated animate__bounceIn" data-wow-duration="2s">
             <h1>lxs-Blog</h1>
             <p>只要朝着一个方向努力，一切都会变得得心应手</p>
         </div>
