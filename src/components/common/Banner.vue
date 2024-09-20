@@ -1,11 +1,6 @@
 <!--横幅-->
 <template>
     <div class="banner">
-        <!--当前时间-->
-        <div id="clock">
-            <p class="date">{{ date }}</p>
-            <p class="time">{{ time }}</p>
-        </div>
         <div class="nav wow animate__animated animate__swing" data-wow-duration="2s">
             <h1>lxs-Blog</h1>
             <p>只要朝着一个方向努力，一切都会变得得心应手</p>
@@ -15,69 +10,12 @@
 </template>
 
 <script>
-import { ref, onMounted, onUnmounted } from 'vue';
-
 export default {
     name: 'BannerHome',
-    setup() {
-        const time = ref('');
-        const date = ref('');
-
-        const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
-
-        function updateTime() {
-            const cd = new Date();
-            time.value = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
-            date.value = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
-        }
-
-        function zeroPadding(num, digit) {
-            return num.toString().padStart(digit, '0');
-        }
-
-        let timerID;
-        onMounted(() => {
-            updateTime();
-            timerID = setInterval(updateTime, 1000);
-        });
-
-        onUnmounted(() => {
-            clearInterval(timerID);
-        });
-
-        const scrollToNextSection = () => {
-            // 滚动到第二屏的位置
-            const nextSectionPosition = window.innerHeight;
-            window.scrollTo({
-                top: nextSectionPosition,
-                behavior: 'smooth'
-            });
-        }
-
-        return {
-            scrollToNextSection, time, date
-        };
-    }
 }
 </script>
 
 <style scoped>
-#clock {
-    text-align: center;
-    position: absolute;
-    left: 50%;
-    top: 30%;
-    transform: translate(-50%, -50%);
-}
-#clock .time {
-    letter-spacing: 0.05em;
-    font-size: 80px;
-    padding: 5px 0;
-}
-#clock .date {
-    letter-spacing: 0.1em;
-    font-size: 24px;
-}
 .banner {
     display: flex;
     flex-direction: column;
@@ -89,7 +27,6 @@ export default {
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
-    text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
 }
 .nav {
     text-align: center;

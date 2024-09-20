@@ -1,29 +1,18 @@
-<!--个人站点-->
 <template>
-    <div class="station">
-        <div class="station-title wow animate__animated animate__bounceIn" data-wow-delay=".2s">
-            <h1>个人站点</h1>
-            <p>只要朝着一个方向努力，一切都会变得得心应手</p>
-        </div>
-        <div class="station-site wow animate__animated animate__bounceIn">
-            <lay-checkcard-group fluid>
-                <lay-row space="30">
-                    <lay-col md="6" sm="12" xs="24" v-for="(site, index) in siteItems" :key="index">
-                        <lay-checkcard :title="site.title" @click="navigateTo(site.link)">
-                            <template #avatar>
-                                <lay-icon :type="site.icon" color="#009688"  size="24px"></lay-icon>
-                            </template>
-                        </lay-checkcard>
-                    </lay-col>
-                </lay-row>
-            </lay-checkcard-group>
+    <div class="section">
+        <div class="links">
+            <ul>
+                <li class="wow animate__animated animate__backInLeft" v-for="(site, index) in siteItems" :key="index">
+                    <a :href="site.link"><lay-icon :type="site.icon" style="margin-right: 10px;"></lay-icon>{{site.title}}</a>
+                </li>
+            </ul>
         </div>
     </div>
 </template>
 
 <script>
 export default {
-    name: 'SiteHome',
+    name: 'FooterHome',
     data() {
         return {
             siteItems: [
@@ -42,75 +31,75 @@ export default {
                     icon: 'layui-icon-carousel',
                     link: 'https://pic.lxshuai.top/'
                 },
-                {
-                    title: '图床',
-                    icon: 'layui-icon-carousel',
-                    link: 'https://pic.lxshuai.top/'
-                },
-                {
-                    title: '图床',
-                    icon: 'layui-icon-carousel',
-                    link: 'https://pic.lxshuai.top/'
-                },
-                // 重复的新闻项可以省略或替换为其他内容
             ]
         };
     },
-    setup() {
-        const navigateTo = (url) => {
-            if (url.startsWith('#')) {
-                return false
-            }
-            window.location.href = url;
-        };
-        return {
-            navigateTo
-        };
-    }
 }
 </script>
 
 <style scoped>
-.station {
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 5%;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.station-title {
-    text-align: center;
-    margin-left: auto;
-    margin-right: auto;
-}
-
-.station-title h1 {
-    font-size: 32px;
-    padding-bottom: 30px;
+.section {
+    width: 100%;
     position: relative;
-    font-weight: 500
+    padding: 100px 0;
+    /* background-image: url(https://pic.lxshuai.top/i/2024/05/21/664ca44165f63.webp); */
+    background-color:rgba(0,0,0,.5);
+    background-position: center;
+    background-attachment: fixed;
+    background-repeat: no-repeat;
+    background-size: cover;
+    text-align: center;
 }
 
-.station-title h1:after {
+.links li {
+    display: inline-block;
+    width: 200px;
+    height: 46px;
+    margin: 10px;
+    border: 1px solid #b4b4b4;
+    -webkit-box-sizing: border-box;
+    box-sizing: border-box;
+    -webkit-transition: all .6s linear;
+    transition: all .6s linear;
+    position: relative;
+    text-align: center;
+    overflow: hidden;
+    background-color: rgb(0, 0, 0, .3);
+}
+
+.links li a {
+    display: block;
+    line-height: 26px;
+    padding: 10px;
+    text-align: center;
+    color: #FFF;
+    text-decoration: none;
+    font-size: 14px;
+    -webkit-transition: all .6s linear;
+    transition: all .6s linear;
+    position: relative;
+    z-index: 1;
+}
+
+.links li:after {
+    content: '';
+    width: 0;
+    background-color: #6bc30d;
+    height: 46px;
     position: absolute;
-    height: 2px;
-    content: "";
-    left: 50%;
-    margin-left: -25px;
-    bottom: -1px;
-    background: #00C2FF
+    left: 0;
+    top: 0;
+    z-index: 0;
+    -webkit-transition: all .6s linear;
+    transition: all .6s linear;
 }
 
-.station-title p {
-    margin-top: 20px;
-    line-height: 22px
+.links li:hover {
+    border-color: #fff;
+    color: #fff;
 }
-.station-site {
-    margin: 30px 0 20px 0;
-}
-.layui-checkcard {
-    background-color: rgba(255,255,255,.5);
+
+.links li:hover:after {
+    width: 100%;
 }
 </style>

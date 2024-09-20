@@ -1,0 +1,85 @@
+<template>
+    <div class="section">
+        <!--当前时间-->
+<!--        <div class="clock">-->
+<!--            <p class="date">{{ date }}</p>-->
+<!--            <p class="time">{{ time }}</p>-->
+<!--        </div>-->
+        <div class="hitokoto">
+            <h1 class="wow animate__animated animate__flip">ZQ个人博客</h1>
+            <p class="wow animate__animated animate__flip">
+                一天很短，开心了就笑，不开心了就过会儿再笑。
+            </p>
+        </div>
+    </div>
+</template>
+
+<script>
+import { ref, onMounted, onUnmounted } from 'vue';
+export default {
+    name: 'HitokotoHome',
+    setup() {
+        const time = ref('');
+        const date = ref('');
+
+        const week = ['星期日', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'];
+
+        function updateTime() {
+            const cd = new Date();
+            time.value = zeroPadding(cd.getHours(), 2) + ':' + zeroPadding(cd.getMinutes(), 2) + ':' + zeroPadding(cd.getSeconds(), 2);
+            date.value = zeroPadding(cd.getFullYear(), 4) + '-' + zeroPadding(cd.getMonth() + 1, 2) + '-' + zeroPadding(cd.getDate(), 2) + ' ' + week[cd.getDay()];
+        }
+
+        function zeroPadding(num, digit) {
+            return num.toString().padStart(digit, '0');
+        }
+
+        let timerID;
+        onMounted(() => {
+            updateTime();
+            timerID = setInterval(updateTime, 1000);
+        });
+
+        onUnmounted(() => {
+            clearInterval(timerID);
+        });
+
+        const scrollToNextSection = () => {
+            // 滚动到第二屏的位置
+            const nextSectionPosition = window.innerHeight;
+            window.scrollTo({
+                top: nextSectionPosition,
+                behavior: 'smooth'
+            });
+        }
+
+        return {
+            scrollToNextSection, time, date
+        };
+    }
+}
+</script>
+
+<style scoped>
+.clock {
+    margin-bottom:20px;
+    text-align: center;
+    text-shadow: 0 0 20px #0aafe6, 0 0 20px rgba(10, 175, 230, 0);
+}
+.clock .time {
+    letter-spacing: 0.05em;
+    font-size: 80px;
+    padding: 5px 0;
+}
+.clock .date {
+    letter-spacing: 0.1em;
+    font-size: 24px;
+}
+.section {
+    width: 100%;
+    padding: 100px 0;
+    background-color:rgba(0,0,0,.3);
+    text-align: center;
+}
+.hitokoto h1{margin-bottom:20px;}
+</style>

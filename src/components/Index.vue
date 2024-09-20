@@ -1,12 +1,14 @@
 <template>
     <!--背景-->
-    <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>
+<!--    <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>-->
     <!--导航-->
     <NavHome />
     <!--横幅-->
     <Banner />
     <!--站点-->
-    <Links />
+    <Station />
+    <!--一言-->
+    <Hitokoto />
     <!--底部-->
     <Footer />
 
@@ -25,13 +27,14 @@ import WOW from 'wow.js'
 
 import NavHome from "./common/NavHome.vue";
 import Banner from "./common/Banner.vue";
-import Links from "./common/Links.vue";
+import Station from "./common/Station.vue";
+import Hitokoto from "./common/Hitokoto.vue";
 import Footer from "./common/Footer.vue";
 
 export default {
     name: 'IndexHome',
     components: {
-        NavHome, Banner, Footer, Links
+        NavHome, Banner, Station, Hitokoto, Footer
     },
     setup() {
         const urls = ref(['/BackgroundDaytime.html', '/BackgroundCartoon.html', '/BackgroundNight.html', '/BackgroundCode.html']);
