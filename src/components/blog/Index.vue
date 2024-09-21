@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Navigation from "@/components/blog/common/Navigation.vue";
+import Navigation from "@/components/blog/common/Navbar.vue";
 import BlogList from "@/components/blog/common/BlogList.vue";
 import Footer from "@/components/common/Footer.vue";
 

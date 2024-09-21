@@ -1,6 +1,6 @@
 <template>
     <!--背景-->
-<!--    <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>-->
+    <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>
     <!--导航-->
     <NavHome />
     <!--横幅-->
