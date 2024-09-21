@@ -1,114 +1,110 @@
 <template>
-    <div class="header-fixed">
-        <div class="navigation">
-            <!-- 网站logo -->
-            <a href="javascript:void(0)" class="header-logo" id="logo">Mr.liu</a>
-            <!-- 导航菜单 -->
-            <nav class="nav" id="nav">
-                <ul>
-                    <!-- 动态生成导航菜单项 -->
-                    <li v-for="item in navItems" :key="item.href" :class="{ 'current': isActive(item.href) }"
-                        @mouseenter="setActive(item.href)" @mouseleave="removeActive(item.href)">
-                        <a :href="item.href">{{ item.text }}</a>
+<div class="container">
+    <div class="container-fixed">
+        <!-- 网站logo -->
+        <a href="javascript:void(0)" class="header-logo">Mr.liu</a>
+        <ul class="menu" id="nav">
+            <li v-for="item in menuItems" :key="item.id">
+                <a :href="item.url">{{ item.title }} <span v-if="item.subItems" class="arrow">→</span></a>
+                
+                <ul v-if="item.subItems" class="sub-menu">
+                    <li v-for="subItem in item.subItems" :key="subItem.id">
+                        <a :href="subItem.url">{{ subItem.title }}</a>
                     </li>
                 </ul>
-            </nav>
-            <!-- QQ登录按钮 -->
-            <a href="#" class="blog-user">
-                <lay-icon type="layui-icon-search"></lay-icon>
-            </a>
-            <!-- 手机菜单按钮 -->
-            <a class="phone-menu" @click="toggleNavMenu">
-                <i></i>
-                <i></i>
-                <i></i>
-            </a>
-        </div>
+            </li>
+        </ul>
+        <a href="#" class="blog-search">
+            <lay-icon type="layui-icon-search"></lay-icon>
+        </a>
+        <!-- 手机菜单按钮 -->
+        <a class="phone-menu" @click="toggleNavMenu">
+            <i></i>
+            <i></i>
+            <i></i>
+        </a>
     </div>
+</div>
 </template>
 
 <script>
-import {ref, onMounted} from 'vue';
-
 export default {
     name: 'NavCommon',
-    setup() {
-        // 导航菜单项数据
-        const navItems = ref([
-            {href: 'index.html', text: '首页'},
-            {href: '/blog', text: '博客'},
-            {href: 'message.html', text: '留言'},
-            {href: 'diary.html', text: '日记'},
-            {href: 'link.html', text: '友链'},
-        ]);
-        const activeItem = ref('');
-        const tempActiveItem = ref('');
-
-        // 判断菜单项是否激活
-        const isActive = (href) => {
-            return activeItem.value === href || tempActiveItem.value === href;
-        };
-
-        // 设置当前激活的菜单项
-        const setActive = (href) => {
-            tempActiveItem.value = href;
-        };
-
-        // 移除当前激活的菜单项
-        const removeActive = (href) => {
-            if (window.location.pathname !== href) {
-                tempActiveItem.value = '';
-            }
-        };
-
-        // 切换手机导航菜单的显示状态
-        const toggleNavMenu = () => {
-            const navMenu = document.getElementById('nav');
-            navMenu.style.display = navMenu.style.display === '' || navMenu.style.display === 'none' ? 'block' : 'none';
-        };
-
-        // 组件挂载后，根据当前页面设置激活的菜单项
-        onMounted(() => {
-            const currentPath = window.location.pathname;
-            navItems.value.forEach((item) => {
-                if (currentPath.includes(item.href)) {
-                    activeItem.value = item.href;
-                }
-            });
-        });
-
+    data() {
         return {
-            navItems,
-            activeItem,
-            tempActiveItem,
-            isActive,
-            setActive,
-            removeActive,
-            toggleNavMenu,
+            menuItems: [
+                {
+                    id: 1,
+                    title: 'About Me',
+                    url: '#about',
+                    subItems: [
+                        { id: 2, title: 'Lorem ipsum dolor', url: '#lorem' },
+                        { id: 3, title: 'Maecenas lacinia sem', url: '#maecenas' },
+                        { id: 4, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                    ]
+                },
+                {
+                    id: 5,
+                    title: 'Portfolio',
+                    url: '#portfolio',
+                    subItems: [
+                        { id: 6, title: 'Lorem ipsum dolor', url: '#lorem' },
+                        { id: 7, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas' },
+                        { id: 8, title: 'Suspendisse fringilla', url: '#suspendisse' },
+                        { id: 9, title: 'Lorem ipsum dolor', url: '#lorem' },
+                        { id: 10, title: 'Maecenas lacinia sem', url: '#maecenas' },
+                        { id: 11, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                    ]
+                },
+                {
+                    id: 12,
+                    title: 'Clients',
+                    url: '#clients',
+                    subItems: [
+                        { id: 13, title: 'Lorem ipsum dolor', url: '#lorem' },
+                        { id: 14, title: 'Maecenas lacinia sem', url: '#maecenas' },
+                        { id: 15, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                    ]
+                },
+                {
+                    id: 16,
+                    title: 'Contact Me',
+                    url: '#contact',
+                    subItems: [
+                        { id: 17, title: 'Lorem ipsum dolor', url: '#lorem' },
+                        { id: 18, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas' },
+                        { id: 19, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                    ]
+                },
+                {
+                    id: 20,
+                    title: 'Support',
+                    url: '#support'
+                }
+            ]
         };
     },
-};
+    setup() {
+        // 切换手机导航菜单的显示状态
+    const toggleNavMenu = () => {
+        const navMenu = document.getElementById('nav');
+        navMenu.style.display = navMenu.style.display === '' || navMenu.style.display === 'none' ? 'block' : 'none';
+    };
+    return {toggleNavMenu}
+    }
+}
 </script>
 
 <style scoped>
-.header-fixed {
+.container {
     width: 100%;
     min-height: 60px;
     position: fixed;
     background-color: rgba(255, 255, 255, 1);
-    z-index: 11002;
+    z-index: 999;
     top: 0;
     left: 0;
     border-bottom: 1px solid #e8e9e7;
-    margin-left: 10px;
-    margin-right: 10px;
-}
-
-.navigation {
-    width: 1280px;
-    margin-left: auto;
-    margin-right: auto;
-    position: relative
 }
 
 .header-logo {
@@ -116,66 +112,129 @@ export default {
     font-size: 40px;
     color: #444647;
     text-align: center;
-    position: absolute;
-    left: 50px
+    position: absolute
 }
 
-.nav {
+.menu {
     display: block;
     position: absolute;
     right: 15%
 }
 
-.nav li {
+.menu, .menu ul {
+    list-style: none;
+}
+
+.menu > li {
     display: block;
     float: left;
     margin: 10px 5px;
     position: relative
 }
 
-.nav li:before {
-    width: 0;
-    height: 2px;
-    position: absolute;
-    bottom: -11px;
-    left: 50%;
-    background-color: #6bc30d;
-    content: "";
-    transition: all .6s;
-    z-index: -1
+.menu a {
+    display: block;
+    position: relative;
+    z-index: 10;
+    padding: 13px 20px 13px 20px;
+    text-decoration: none;
+    color: rgba(75,75,75,1);
+    line-height: 1;
+    font-weight: 600;
+    letter-spacing: -.05em;
+    background: transparent;		
+    text-shadow: 0 1px 1px rgba(255,255,255,.9);
+    transition: all .25s ease-in-out;
 }
 
-.nav li a {
-    display: block;
-    line-height: 32px;
-    padding: 4px 28px;
-    color: #212220;
-    font-weight: 400;
-    font-size: 15px;
+.menu > li:hover > a {
+    background-color: #6bc30d;
+    text-shadow: none;
     text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
     -webkit-transition: all .2s;
     transition: all .2s
 }
 
-.nav .current:before {
-    width: 100%;
-    left: 0
+.menu li ul {
+    position: absolute;
+    left: 0;
+    z-index: 100;
+    width: 200px;
+    padding: 0;
+    opacity: 0;
+    visibility: hidden;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+    background: transparent;
+    overflow: hidden;
+    transform-origin: 50% 0%;
 }
 
-.nav .current a {
-    color: #6bc30d
+.menu li:hover ul {
+    padding: 15px 0;
+    background: #333;
+    opacity: 1;
+    visibility: visible;
+    box-shadow: 1px 1px 7px rgba(0,0,0,.5);
+    animation-name: swingdown;
+    animation-duration: 1s;
+    animation-timing-function: ease;
 }
 
-.blog-user {
+.arrow {
+    display: inline-block;
+    margin-left: 5px;
+    transition: transform 0.25s ease-in-out;
+}
+
+.menu > li:hover .arrow {
+    transform: rotate(90deg);
+}
+
+.blog-search {
     position: absolute;
     line-height: 60px;
-    font-size: 24px
+    font-size: 24px;
+    right: 0
 }
 
-.blog-user > img {
-    border-radius: 50%;
-    width: 40px;
-    height: 40px
+@keyframes swingdown {
+    0% {
+        opacity: .99999;
+        transform: rotateX(90deg);
+    }
+
+    30% {			
+        transform: rotateX(-20deg) rotateY(5deg);
+        animation-timing-function: ease-in-out;
+    }
+
+    65% {
+        transform: rotateX(20deg) rotateY(-3deg);
+        animation-timing-function: ease-in-out;
+    }
+
+    100% {
+        transform: rotateX(0);
+        animation-timing-function: ease-in-out;
+    }
+}
+
+.menu li li a {
+    padding-left: 15px;
+    font-weight: 400;
+    color: #ddd;
+    text-shadow: none;
+    border-top: dotted 1px transparent;
+    border-bottom: dotted 1px transparent;
+    transition: all .15s linear;
+}
+
+.menu li li a:hover {
+    color: rgba(0,223,252,1);
+    border-top: dotted 1px rgba(255,255,255,.15);
+    border-bottom: dotted 1px rgba(255,255,255,.15);
+    background: rgba(0,223,252,.02);
 }
 
 .phone-menu {
@@ -208,23 +267,22 @@ export default {
 .phone-menu i:nth-of-type(3) {
     top: 32px
 }
-
 @media screen and (min-width: 1025px) {
-    .blog-user {
-        right: 0
+    .blog-search {
+        left: 0
     }
 
     .phone-menu {
         display: none
     }
 
-    .nav {
+    .menu {
         display: block !important
     }
 }
 
 @media screen and (max-width: 1366px) {
-    .navigation {
+    .container-fixed {
         width: 90%
     }
 
@@ -232,13 +290,16 @@ export default {
         display: none
     }
 
-    .nav {
+    .menu {
         display: block
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .navigation {
+    .blog-search {
+        left: 0
+    }
+    .container-fixed {
         width: 90%
     }
 
@@ -247,7 +308,7 @@ export default {
         width: 50%
     }
 
-    .nav {
+    .menu {
         position: fixed;
         top: 60px;
         left: 0;
@@ -258,23 +319,23 @@ export default {
         display: block
     }
 
-    .nav {
+    .menu {
         display: none;
         width: 100%;
         background: rgba(255, 255, 255, 1)
     }
 
-    .nav li:before {
+    .menu li:before {
         bottom: 0;
-        z-index: 10
+        z-index: 100
     }
 
-    .nav li {
+    .menu li {
         float: none;
         border-bottom: 1px solid #e8e9e7
     }
 
-    .nav li:last-child {
+    .menu li:last-child {
         border: 0
     }
 }

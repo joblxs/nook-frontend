@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import Navigation from "@/components/blog/common/Navbar.vue";
+import Navigation from "@/components/blog/common/Navigation.vue";
 import BlogList from "@/components/blog/common/BlogList.vue";
 import Footer from "@/components/common/Footer.vue";
 
@@ -20,14 +20,12 @@ export default {
 }
 </script>
 
-<style scoped>
+<style>
 .container-fixed {
     width: 1280px;
     margin-left: auto;
     margin-right: auto;
     position: relative;
-    padding-top:60px;
-    //min-height: 100vh;
 }
 
 @media screen and (max-width: 1366px) {
