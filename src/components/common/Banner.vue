@@ -12,6 +12,19 @@
 <script>
 export default {
     name: 'BannerHome',
+    setup() {
+        const scrollToNextSection = () => {
+            // 滚动到第二屏的位置
+            const nextSectionPosition = window.innerHeight;
+            window.scrollTo({
+                top: nextSectionPosition,
+                behavior: 'smooth'
+            });
+        }
+        return {
+            scrollToNextSection
+        }
+    }
 }
 </script>
 

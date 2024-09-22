@@ -44,17 +44,8 @@ export default {
             clearInterval(timerID);
         });
 
-        const scrollToNextSection = () => {
-            // 滚动到第二屏的位置
-            const nextSectionPosition = window.innerHeight;
-            window.scrollTo({
-                top: nextSectionPosition,
-                behavior: 'smooth'
-            });
-        }
-
         return {
-            scrollToNextSection, time, date
+            time, date
         };
     }
 }
