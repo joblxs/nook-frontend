@@ -1,12 +1,13 @@
 <template>
     <!--导航-->
-    <Navigation/>
+    <Navigation />
     <!--列表-->
-    <div class="container-fixed" style="z-index: 9999">
+    <div class="container-fixed">
         <BlogList />
+        <div style="clear: both"></div>
     </div>
     <!--底部-->
-    <Footer/>
+    <Footer />
 </template>
 
 <script>

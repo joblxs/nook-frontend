@@ -101,7 +101,7 @@ export default {
     min-height: 60px;
     position: fixed;
     background-color: rgba(255, 255, 255, 1);
-    z-index: 999999;
+    z-index: 999;
     top: 0;
     left: 0;
     border-bottom: 1px solid #e8e9e7;

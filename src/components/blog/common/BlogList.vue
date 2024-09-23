@@ -6,31 +6,31 @@
                     <div class="article-item wow animate__animated animate__zoomIn">
                         <div class="fc-flag">置顶</div>
                         <div class="recent-post-title">
-                            <p class="title">{{blog.title}}</p>
+                            <p class="title">{{ blog.title }}</p>
                         </div>
                         <div class="recent-post-info">
                             <div class="recent-post-meta">
                                 <div class="article-meta-wrap">
                                     <span class="post-meta-date">
-                                        <lay-icon type="layui-icon-release"></lay-icon>
+                                        <lay-icon type="layui-icon-release" style="color: #0aafe6;font-size: 12px"></lay-icon>
                                         <span> 发布于 </span>
                                         <time datetime="2023-03-05T16:00:00.000Z" title="发表于 2023-03-05 16:00:00" style="display: inline;">2023-3-6</time>
                                         <span> | </span>
-                                        <lay-icon type="layui-icon-refresh"></lay-icon>
+                                        <lay-icon type="layui-icon-refresh" style="color: #0aafe6;font-size: 12px"></lay-icon>
                                         <span> 更新于 </span>
                                         <time datetime="2023-03-20T23:00:00.000Z" title="更新于 2023-03-20 23:00:00" style="display: inline;">2023-3-21</time>
                                     </span>
                                     <span>
                                         <span> | </span>
-                                        <lay-icon type="layui-icon-component"></lay-icon>
-                                        <a href="#" data-pjax-state=""> 魔改教程 </a>
+                                        <lay-icon type="layui-icon-component" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                                        <span> 魔改教程 </span>
                                     </span>
                                     <span>
                                         <span> | </span>
-                                        <lay-icon type="layui-icon-note"></lay-icon>
-                                        <a href="/tags/Hexo/" data-pjax-state=""> Hexo </a>
+                                        <lay-icon type="layui-icon-note" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                                        <span> Hexo </span>
                                         <span> • </span>
-                                        <a href="/tags/Butterfly/" data-pjax-state=""> Butterfly </a>
+                                        <span> Butterfly </span>
                                     </span>
                                 </div>
                             </div>
@@ -124,10 +124,10 @@ export default {
 
 .article-item {
     overflow: hidden;
-    background-color: rgba(185, 199, 190, 0.5);
     position: relative;
     margin-top: 20px;
     border-radius: 5%;
+    background: rgba(0, 0, 0, .3);
 }
 
 .article-item .fc-flag {
@@ -144,11 +144,11 @@ export default {
 }
 
 .article-item .recent-post-title {
-    height: 200px;
+    height: 150px;
     width: 100%;
     background: rgba(25, 25, 25, .4);
     text-align: center;
-    clip-path: polygon(0 130px, 0 0, 100% 0, 100% 130px, 50% 100%);
+    clip-path: polygon(0 100px, 0 0, 100% 0, 100% 100px, 50% 100%);
 }
 
 .article-item .recent-post-title .title {
@@ -157,13 +157,18 @@ export default {
     padding-top: 30px;
     line-height: 25px;
     margin: 0 25px 30px 25px;
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 3;
+    overflow: hidden;
 }
 
 .article-item .recent-post-info {
     margin-top: 30px;
-    height: 150px;
+    height: 100px;
     width: 100%;
     padding: 0 25px 5px 25px;
+    line-height: 25px;
 }
 
 @media screen and (max-width: 1024px) {
@@ -174,9 +179,6 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
-    .article-item .time {
-        display: none
-    }
 
     .article-item .title {
         padding-right: 0
