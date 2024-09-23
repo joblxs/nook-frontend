@@ -110,7 +110,7 @@ export default {
 .header-logo {
     font-family: BarbaraHand;
     font-size: 40px;
-    color: #444647;
+    color: var(--font-color);
     text-align: center;
     position: absolute
 }

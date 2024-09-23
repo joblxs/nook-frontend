@@ -27,7 +27,7 @@
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: rgba(0, 0, 0, .5);
     border-radius: 5%;
 }
 
@@ -37,7 +37,6 @@
     line-height: 30px;
     font-weight: 400;
     border-bottom: 1px solid #e8e9e7;
-    color: #383937;
     position: relative;
     font-size: 18px
 }
@@ -61,7 +60,7 @@
 }
 
 .hot-list-article li a {
-    color: #787977
+    color: var(--font-color);
 }
 
 .hot-list-article li:before {

@@ -1,8 +1,20 @@
 <template>
-    <router-view />
+    <lay-config-provider :theme="theme">
+        <!--背景-->
+        <iframe class="background-iframe" :src="iframeSrc" frameborder="0"></iframe>
+        <router-view />
+
+        <lay-tooltip position="left-start" content="返回顶部">
+            <lay-backtop :bottom="140" circle size="small" bgcolor="#5FB878" iconSize="22" icon="layui-icon-top" ></lay-backtop>
+        </lay-tooltip>
+        <lay-tooltip position="left-start" content="切换背景">
+            <lay-backtop :bottom="100" circle size="small" bgcolor="#5FB878" iconSize="22" :showHeight="0" @click="switchIframeSrc" icon="layui-icon-theme" disabled></lay-backtop>
+        </lay-tooltip>
+    </lay-config-provider>
 </template>
 
 <script>
+import {ref} from 'vue';
 import WOW from 'wow.js';
 export default {
     name: 'App',
@@ -16,6 +28,53 @@ export default {
             scrollContainer: null,
             resetAnimation: true,
         }).init();
+    },
+    setup() {
+        const urls = ref(['/BackgroundDaytime.html', '/BackgroundCartoon.html', '/BackgroundNight.html', '/BackgroundCode.html']);
+        const currentUrlIndex = ref(0); // 当前URL索引
+        const iframeSrc = ref(urls.value[currentUrlIndex.value]);
+
+        const switchIframeSrc = () => {
+            currentUrlIndex.value = (currentUrlIndex.value + 1) % urls.value.length;
+            iframeSrc.value = urls.value[currentUrlIndex.value];
+
+            // 获取新的样式属性
+            const newStyle = determineStyle(iframeSrc.value);
+            document.documentElement.style.setProperty('--font-color', newStyle['font-color']);
+        };
+        function determineStyle(url) {
+            switch (url) {
+                case '/BackgroundDaytime.html':
+                    return {
+                        'font-color': '#000000',
+                        'background-color': 'rgba(0, 0, 0, .2)'
+                    };
+                case '/BackgroundCartoon.html':
+                    return {
+                        'font-color': '#FFFFFF',
+                        'background-color': 'rgba(0, 0, 0, .2)'
+                    };
+                case '/BackgroundNight.html':
+                    return {
+                        'font-color': '#FFFFFF',
+                        'background-color': 'rgba(255, 255, 255, .2)'
+                    };
+                case '/BackgroundCode.html':
+                    return {
+                        'font-color': '#FFFFFF',
+                        'background-color': 'rgba(255, 255, 255, .2)'
+                    };
+                default:
+                    return {
+                        'font-color': '#FFFFFF',
+                        'background-color': 'rgba(0, 0, 0, .2)'
+                    };
+            }
+        }
+        return {
+            iframeSrc,
+            switchIframeSrc
+        };
     }
 }
 
@@ -40,8 +99,12 @@ window.ResizeObserver = class ResizeObserver extends _ResizeObserver {
 
 <style>
 * {margin: 0;padding: 0}
+:root {
+    --font-color: #000000;
+    --background-color: rgba(0, 0, 0, .2);
+}
 body {
-    color: #FFF !important;
+    color: var(--font-color) !important;
     font-family:"Microsoft YaHei"
 }
 @font-face {

@@ -7,7 +7,7 @@
                         <div class="uptime">{{ uptime }}</div>
                         <br/>
                         <p>Copyright &copy; 个人主页 All Rights Reserved
-                            <a href="http://www.beian.miit.gov.cn" target="_blank" rel="nofollow" style="color: #fff">冀ICP备2024067055号</a>
+                            <a href="http://www.beian.miit.gov.cn" target="_blank" rel="nofollow">冀ICP备2024067055号</a>
                         </p>
                     </lay-col>
                 </lay-row>
@@ -66,5 +66,8 @@ export default {
     text-align: center;
     margin: 0 auto;
     max-width: 800px;
+}
+.layui-row a{
+    color: var(--font-color)
 }
 </style>

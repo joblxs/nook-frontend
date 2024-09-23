@@ -72,7 +72,7 @@ export default {
     line-height: 26px;
     padding: 10px;
     text-align: center;
-    color: #FFF;
+    color: var(--font-color);
     text-decoration: none;
     font-size: 14px;
     -webkit-transition: all .6s linear;
