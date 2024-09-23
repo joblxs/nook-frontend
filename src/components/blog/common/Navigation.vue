@@ -1,8 +1,8 @@
 <template>
 <div class="container">
-    <div class="container-fixed">
+    <div class="header-fixed">
         <!-- 网站logo -->
-        <a href="javascript:void(0)" class="header-logo">Mr.liu</a>
+        <a href="javascript:void(0)" class="header-logo">Mr.li</a>
         <ul class="menu" id="nav">
             <li v-for="item in menuItems" :key="item.id">
                 <a :href="item.url">{{ item.title }} <span v-if="item.subItems" class="arrow">→</span></a>
@@ -101,7 +101,7 @@ export default {
     min-height: 60px;
     position: fixed;
     background-color: rgba(255, 255, 255, 1);
-    z-index: 999;
+    z-index: 999999;
     top: 0;
     left: 0;
     border-bottom: 1px solid #e8e9e7;
@@ -268,10 +268,6 @@ export default {
     top: 32px
 }
 @media screen and (min-width: 1025px) {
-    .blog-search {
-        left: 0
-    }
-
     .phone-menu {
         display: none
     }

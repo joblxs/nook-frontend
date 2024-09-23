@@ -2,7 +2,7 @@
     <!--导航-->
     <Navigation/>
     <!--列表-->
-    <div class="container-fixed">
+    <div class="container-fixed" style="z-index: 9999">
         <BlogList />
     </div>
     <!--底部-->
@@ -21,7 +21,7 @@ export default {
 </script>
 
 <style>
-.container-fixed {
+.header-fixed,.container-fixed {
     width: 1280px;
     margin-left: auto;
     margin-right: auto;
@@ -29,13 +29,13 @@ export default {
 }
 
 @media screen and (max-width: 1366px) {
-    .container-fixed {
+    .header-fixed,.container-fixed {
         width: 90%
     }
 }
 
 @media screen and (max-width: 1024px) {
-    .container-fixed {
+    .header-fixed,.container-fixed {
         width: 90%
     }
 }
