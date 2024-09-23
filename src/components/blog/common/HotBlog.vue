@@ -1,5 +1,5 @@
 <template>
-    <div class="other-item">
+    <div class="other-item wow animate__animated animate__bounceInRight">
         <h5 class="other-item-title">热门文章</h5>
         <div class="inner">
             <ul class="hot-list-article">
@@ -25,7 +25,10 @@
     position: relative;
     background-color: #fff;
     margin-top: 20px;
-    overflow: hidden
+    margin-bottom: 20px;
+    overflow: hidden;
+    background-color: rgba(0, 0, 0, .1);
+    border-radius: 5%;
 }
 
 .other-item-title {

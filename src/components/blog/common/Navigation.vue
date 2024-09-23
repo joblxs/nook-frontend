@@ -148,7 +148,7 @@ export default {
 }
 
 .menu > li:hover > a {
-    background-color: #6bc30d;
+    color: #6bc30d;
     text-shadow: none;
     text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
     -webkit-transition: all .2s;

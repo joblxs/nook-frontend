@@ -122,6 +122,12 @@ export default {
     margin-top: 20px;
     border-radius: 5%;
     background: rgba(0, 0, 0, .3);
+    transition: box-shadow 0.3s ease-in-out;
+    cursor: pointer;
+}
+
+.article-item:hover {
+    box-shadow: 0 10px 16px 0 rgba(0,0,0,0.8);
 }
 
 .article-item .fc-flag {
