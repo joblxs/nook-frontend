@@ -40,36 +40,35 @@ export default {
 
             // 获取新的样式属性
             const newStyle = determineStyle(iframeSrc.value);
-            document.documentElement.style.setProperty('--font-color', newStyle['font-color']);
+            changeTheme(newStyle['theme']);
         };
         function determineStyle(url) {
             switch (url) {
-                case '/BackgroundDaytime.html':
+                case '/BackgroundDaytime.html': case '/BackgroundCartoon.html':
                     return {
-                        'font-color': '#000000',
-                        'background-color': 'rgba(0, 0, 0, .2)'
+                        'theme': 'daytime'
                     };
-                case '/BackgroundCartoon.html':
+                case '/BackgroundNight.html': case '/BackgroundCode.html':
                     return {
-                        'font-color': '#FFFFFF',
-                        'background-color': 'rgba(0, 0, 0, .2)'
-                    };
-                case '/BackgroundNight.html':
-                    return {
-                        'font-color': '#FFFFFF',
-                        'background-color': 'rgba(255, 255, 255, .2)'
-                    };
-                case '/BackgroundCode.html':
-                    return {
-                        'font-color': '#FFFFFF',
-                        'background-color': 'rgba(255, 255, 255, .2)'
+                        'theme': 'night'
                     };
                 default:
                     return {
-                        'font-color': '#FFFFFF',
-                        'background-color': 'rgba(0, 0, 0, .2)'
+                        'theme': 'daytime'
                     };
             }
+        }
+
+        function changeTheme(theme) {
+            const currentLink = document.getElementById('dynamic-theme');
+            if (currentLink) {
+                document.head.removeChild(currentLink);
+            }
+            const link = document.createElement('link');
+            link.id = 'dynamic-theme';
+            link.rel = 'stylesheet';
+            link.href = `/theme/${theme}.css`;
+            document.head.appendChild(link);
         }
         return {
             iframeSrc,
@@ -99,10 +98,6 @@ window.ResizeObserver = class ResizeObserver extends _ResizeObserver {
 
 <style>
 * {margin: 0;padding: 0}
-:root {
-    --font-color: #000000;
-    --background-color: rgba(0, 0, 0, .2);
-}
 body {
     color: var(--font-color) !important;
     font-family:"Microsoft YaHei"
