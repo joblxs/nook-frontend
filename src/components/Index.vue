@@ -22,8 +22,7 @@
 </template>
 
 <script>
-import {ref, onMounted} from 'vue';
-import WOW from 'wow.js'
+import {ref} from 'vue';
 
 import NavHome from "@/components/common/NavHome.vue";
 import Banner from "@/components/common/Banner.vue";
@@ -45,18 +44,6 @@ export default {
             currentUrlIndex.value = (currentUrlIndex.value + 1) % urls.value.length;
             iframeSrc.value = urls.value[currentUrlIndex.value];
         };
-
-        onMounted(() => {
-            new WOW({
-                boxClass: "wow", // 需要执行动画的元素的class
-                animateClass: "animate__animated", // 动画的class
-                offset: 0, // 触发动画的滚动偏移量
-                mobile: true, // 是否在移动设备上启用
-                live: true, // 是否对动态添加的元素进行动画处理
-                scrollContainer: null,
-                resetAnimation: true,
-            }).init();
-        });
         return {
             iframeSrc,
             switchIframeSrc

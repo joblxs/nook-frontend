@@ -1,16 +1,15 @@
 <template>
-    <div class="col-content" style="margin-top: 60px">
-        <lay-container fluid>
-            <lay-row space="30">
-                <lay-col v-for="(blog, index) in blogItems" :key="index" md="8" sm="12" xs="24">
-                    <div class="article-item wow animate__animated animate__zoomIn">
-                        <div class="fc-flag">置顶</div>
-                        <div class="recent-post-title">
-                            <p class="title">{{ blog.title }}</p>
-                        </div>
-                        <div class="recent-post-info">
-                            <div class="recent-post-meta">
-                                <div class="article-meta-wrap">
+    <lay-container fluid>
+        <lay-row space="30">
+            <lay-col v-for="(blog, index) in blogItems" :key="index" md="8" sm="12" xs="24">
+                <div class="article-item wow animate__animated animate__zoomIn">
+                    <div class="fc-flag">置顶</div>
+                    <div class="recent-post-title">
+                        <p class="title">{{ blog.title }}</p>
+                    </div>
+                    <div class="recent-post-info">
+                        <div class="recent-post-meta">
+                            <div class="article-meta-wrap">
                                     <span class="post-meta-date">
                                         <lay-icon type="layui-icon-release" style="color: #0aafe6;font-size: 12px"></lay-icon>
                                         <span> 发布于 </span>
@@ -20,26 +19,25 @@
                                         <span> 更新于 </span>
                                         <time datetime="2023-03-20T23:00:00.000Z" title="更新于 2023-03-20 23:00:00" style="display: inline;">2023-3-21</time>
                                     </span>
-                                    <span>
+                                <span>
                                         <span> | </span>
                                         <lay-icon type="layui-icon-component" style="color: #0aafe6;font-size: 12px"></lay-icon>
                                         <span> 魔改教程 </span>
                                     </span>
-                                    <span>
+                                <span>
                                         <span> | </span>
                                         <lay-icon type="layui-icon-note" style="color: #0aafe6;font-size: 12px"></lay-icon>
                                         <span> Hexo </span>
                                         <span> • </span>
                                         <span> Butterfly </span>
                                     </span>
-                                </div>
                             </div>
                         </div>
                     </div>
-                </lay-col>
-            </lay-row>
-        </lay-container>
-    </div>
+                </div>
+            </lay-col>
+        </lay-row>
+    </lay-container>
 </template>
 
 <script>
@@ -117,10 +115,6 @@ export default {
 </script>
 
 <style scoped>
-.col-content {
-    float: left;
-    width: calc(100% - 300px - 20px)
-}
 
 .article-item {
     overflow: hidden;
@@ -171,23 +165,10 @@ export default {
     line-height: 25px;
 }
 
-@media screen and (max-width: 1024px) {
-    .col-content {
-        width: 100%;
-        float: none
-    }
-}
-
 @media screen and (max-width: 500px) {
-
     .article-item .title {
         padding-right: 0
     }
-
-    .col-content {
-        padding: 0 0
-    }
-
     .article-item .content .cover {
         width: 100%;
         height: auto;
