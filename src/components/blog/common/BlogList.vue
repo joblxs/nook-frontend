@@ -1,38 +1,44 @@
 <template>
     <lay-container fluid>
         <lay-row space="30">
-            <lay-col v-for="(blog, index) in blogItems" :key="index" md="8" sm="12" xs="24">
+            <lay-col v-for="(blog, index) in blogItems" :key="index" md="12" sm="12" xs="24">
                 <div class="article-item wow animate__animated animate__zoomIn">
                     <div class="fc-flag">置顶</div>
+                    <a href="#" class="recent-post-summary">
+                        <div class="summary">{{blog.summary}}</div>
+                    </a>
                     <div class="recent-post-title">
-                        <p class="title">{{ blog.title }}</p>
+                        <a href="#" class="title">
+                            {{blog.title}}
+                        </a>
                     </div>
                     <div class="recent-post-info">
-                        <div class="recent-post-meta">
-                            <div class="article-meta-wrap">
-                                    <span class="post-meta-date">
-                                        <lay-icon type="layui-icon-release" style="color: #0aafe6;font-size: 12px"></lay-icon>
-                                        <span> 发布于 </span>
-                                        <time datetime="2023-03-05T16:00:00.000Z" title="发表于 2023-03-05 16:00:00" style="display: inline;">2023-3-6</time>
-                                        <span> | </span>
-                                        <lay-icon type="layui-icon-refresh" style="color: #0aafe6;font-size: 12px"></lay-icon>
-                                        <span> 更新于 </span>
-                                        <time datetime="2023-03-20T23:00:00.000Z" title="更新于 2023-03-20 23:00:00" style="display: inline;">2023-3-21</time>
-                                    </span>
-                                <span>
-                                        <span> | </span>
-                                        <lay-icon type="layui-icon-component" style="color: #0aafe6;font-size: 12px"></lay-icon>
-                                        <span> 魔改教程 </span>
-                                    </span>
-                                <span>
-                                        <span> | </span>
-                                        <lay-icon type="layui-icon-note" style="color: #0aafe6;font-size: 12px"></lay-icon>
-                                        <span> Hexo </span>
-                                        <span> • </span>
-                                        <span> Butterfly </span>
-                                    </span>
-                            </div>
-                        </div>
+                        <span class="post-meta-date">
+                            <lay-icon type="layui-icon-release" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                            <span> 发表于 </span>
+                            <time datetime="2023-03-05T16:00:00.000Z" title="发表于 2023-03-05 16:00:00" style="display: inline;">2023-3-6</time>
+                            <span> | </span>
+                            <lay-icon type="layui-icon-refresh" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                            <span> 更新于 </span>
+                            <time datetime="2023-03-20T23:00:00.000Z" title="更新于 2023-03-20 23:00:00" style="display: inline;">2023-3-21</time>
+                        </span>
+                        <span>
+                            <span> | </span>
+                            <lay-icon type="layui-icon-component" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                            <span> 魔改教程 </span>
+                        </span>
+                        <span>
+                            <span> | </span>
+                            <lay-icon type="layui-icon-note" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                            <span> Hexo </span>
+                            <span> • </span>
+                            <span> Butterfly </span>
+                        </span>
+                        <span>
+                            <span> | </span>
+                            <lay-icon type="layui-icon-read" style="color: #0aafe6;font-size: 12px"></lay-icon>
+                            <span> 阅读量: 5 </span>
+                        </span>
                     </div>
                 </div>
             </lay-col>
@@ -123,7 +129,6 @@ export default {
     border-radius: 5%;
     background: var(--5-background-color);
     transition: box-shadow 0.3s ease-in-out;
-    cursor: pointer;
 }
 
 .article-item:hover {
@@ -143,32 +148,70 @@ export default {
     z-index: 1;
 }
 
-.article-item .recent-post-title {
-    height: 150px;
+
+.article-item .recent-post-summary {
+    height: 180px;
     width: 100%;
     background: var(--7-background-color);
-    text-align: center;
-    clip-path: polygon(0 100px, 0 0, 100% 0, 100% 100px, 50% 100%);
+    clip-path: polygon(0 120px, 0 0, 100% 0, 100% 120px, 50% 100%);
+    color: var(--font-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.3s ease;
 }
 
-.article-item .recent-post-title .title {
-    -webkit-line-clamp: 3;
+.article-item .recent-post-summary:hover{
+    color: #6bc30d;
+    animation-name: scaleUp;
+    animation-duration: 1.5s;
+    animation-fill-mode: forwards;
+    transform-origin: center;
+}
+
+@keyframes scaleUp {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.1);
+    }
+}
+
+.article-item .recent-post-summary .summary {
     font-size: 15px;
-    padding-top: 30px;
     line-height: 25px;
-    margin: 0 25px 30px 25px;
+    margin: 0 40px;
     display: -webkit-box;
     -webkit-box-orient: vertical;
-    -webkit-line-clamp: 3;
+    -webkit-line-clamp: 2;
     overflow: hidden;
 }
 
+.article-item .recent-post-title {
+    width: 100%;
+    margin-top: 25px;
+    color: var(--font-color);
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    font-size: 15px;
+    padding: 0 25px;
+}
+
+.article-item .recent-post-title .title:hover{
+    color: #6bc30d;
+}
+
 .article-item .recent-post-info {
-    margin-top: 30px;
+    margin-top: 20px;
     height: 100px;
     width: 100%;
     padding: 0 25px 5px 25px;
     line-height: 25px;
+    font-size:12px;
+    color: #858585;
 }
 
 @media screen and (max-width: 500px) {

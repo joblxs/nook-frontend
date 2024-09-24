@@ -29,7 +29,8 @@ export default {
 
 <style>
 .header-fixed, .container-fixed {
-    width: 1280px;
+    max-width: 1200px;
+    width: 100%;
     margin-left: auto;
     margin-right: auto;
     position: relative;
