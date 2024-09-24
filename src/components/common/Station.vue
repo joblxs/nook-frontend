@@ -43,7 +43,7 @@ export default {
     position: relative;
     padding: 100px 0;
     /* background-image: url(https://pic.lxshuai.top/i/2024/05/21/664ca44165f63.webp); */
-    background-color:rgba(0,0,0,.5);
+    background-color: var(--7-background-color);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;
@@ -64,7 +64,7 @@ export default {
     position: relative;
     text-align: center;
     overflow: hidden;
-    background-color: rgb(0, 0, 0, .3);
+    background-color: var(--3-background-color);
 }
 
 .links li a {

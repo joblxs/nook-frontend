@@ -100,7 +100,7 @@ export default {
     width: 100%;
     min-height: 60px;
     position: fixed;
-    background-color: rgba(255, 255, 255, 1);
+    background-color: var(--10-background-color);
     z-index: 999;
     top: 0;
     left: 0;
@@ -138,19 +138,18 @@ export default {
     z-index: 10;
     padding: 13px 20px 13px 20px;
     text-decoration: none;
-    color: rgba(75,75,75,1);
+    color: var(--font-color);
     line-height: 1;
     font-weight: 600;
     letter-spacing: -.05em;
     background: transparent;		
-    text-shadow: 0 1px 1px rgba(255,255,255,.9);
+    text-shadow: 0 1px 1px var(--9-background-color);
     transition: all .25s ease-in-out;
 }
 
 .menu > li:hover > a {
     color: #6bc30d;
-    text-shadow: none;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .2);
+    text-shadow: 0 1px 0 var(--2-background-color);
     -webkit-transition: all .2s;
     transition: all .2s
 }
@@ -192,6 +191,7 @@ export default {
 }
 
 .blog-search {
+    color: var(--font-color);
     position: absolute;
     line-height: 60px;
     font-size: 24px;

@@ -23,11 +23,10 @@
 <style scoped>
 .other-item {
     position: relative;
-    background-color: #fff;
     margin-top: 20px;
     margin-bottom: 20px;
     overflow: hidden;
-    background-color: rgba(0, 0, 0, .5);
+    background-color: var(--7-background-color);
     border-radius: 5%;
 }
 
@@ -74,7 +73,7 @@
     top: 5px;
     border-radius: 100%;
     background-color: #edefee;
-    text-shadow: 0 1px 0 rgba(255, 255, 255, .5);
+    text-shadow: 0 1px 0 var(--5-background-color);
     font-family: SourceCodeProRegular, Menlo, Monaco, Consolas, "Courier New", monospace, 'Helvetica Neue', Arial, sans-serif
 }
 

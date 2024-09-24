@@ -55,7 +55,7 @@ export default {
 .section {
     width: 100%;
     padding: 100px 0;
-    background-color:rgba(0,0,0,.3);
+    background-color: var(--5-background-color);
     background-position: center;
     background-attachment: fixed;
     background-repeat: no-repeat;

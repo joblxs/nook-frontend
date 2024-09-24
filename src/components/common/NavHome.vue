@@ -51,7 +51,7 @@ export default {
     right: 55px;
     top: 40px;
     cursor: pointer;
-    background-color: rgba(0, 0, 0, .1);
+    background-color: var(--1-background-color);
     overflow: hidden;
     z-index: 102;
 }

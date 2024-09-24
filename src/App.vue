@@ -33,10 +33,13 @@ export default {
         const urls = ref(['/BackgroundDaytime.html', '/BackgroundCartoon.html', '/BackgroundNight.html', '/BackgroundCode.html']);
         const currentUrlIndex = ref(0); // 当前URL索引
         const iframeSrc = ref(urls.value[currentUrlIndex.value]);
+        const theme = ref(determineStyle(iframeSrc.value)['theme']); // 初始化主题
+        changeTheme(theme.value);
 
         const switchIframeSrc = () => {
             currentUrlIndex.value = (currentUrlIndex.value + 1) % urls.value.length;
             iframeSrc.value = urls.value[currentUrlIndex.value];
+            theme.value = determineStyle(iframeSrc.value)['theme']; // 更新主题
 
             // 获取新的样式属性
             const newStyle = determineStyle(iframeSrc.value);
@@ -46,15 +49,15 @@ export default {
             switch (url) {
                 case '/BackgroundDaytime.html': case '/BackgroundCartoon.html':
                     return {
-                        'theme': 'daytime'
+                        'theme': 'light'
                     };
                 case '/BackgroundNight.html': case '/BackgroundCode.html':
                     return {
-                        'theme': 'night'
+                        'theme': 'dark'
                     };
                 default:
                     return {
-                        'theme': 'daytime'
+                        'theme': 'light'
                     };
             }
         }

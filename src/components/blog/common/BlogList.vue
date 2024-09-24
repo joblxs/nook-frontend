@@ -121,7 +121,7 @@ export default {
     position: relative;
     margin-top: 20px;
     border-radius: 5%;
-    background: rgba(0, 0, 0, .3);
+    background: var(--5-background-color);
     transition: box-shadow 0.3s ease-in-out;
     cursor: pointer;
 }
@@ -146,7 +146,7 @@ export default {
 .article-item .recent-post-title {
     height: 150px;
     width: 100%;
-    background: rgba(25, 25, 25, .4);
+    background: var(--7-background-color);
     text-align: center;
     clip-path: polygon(0 100px, 0 0, 100% 0, 100% 100px, 50% 100%);
 }
