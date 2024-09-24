@@ -6,9 +6,8 @@
         </div>
         <div id="navigation" :class="navClasses">
             <ul class="navigation-point">
-                <li><a href="#">首页</a></li>
+                <li><a href="/">首页</a></li>
                 <li><a href="/blog">博客</a></li>
-                <li><a href="#">留言</a></li>
             </ul>
             <div class="navigation-logo"><a>Mr.li</a></div>
         </div>
@@ -51,7 +50,7 @@ export default {
     right: 55px;
     top: 40px;
     cursor: pointer;
-    background-color: var(--1-background-color);
+    background-color: var(--7-background-color);
     overflow: hidden;
     z-index: 102;
 }
@@ -62,7 +61,7 @@ export default {
 
 .menu_close span, .menu_open span {
     display: block;
-    background: #FFF;
+    background: var(--font-color);
     width: 26px;
     height: 2px;
     line-height: 10px;

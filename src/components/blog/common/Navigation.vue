@@ -35,18 +35,13 @@ export default {
             menuItems: [
                 {
                     id: 1,
-                    title: 'About Me',
-                    url: '#about',
-                    subItems: [
-                        { id: 2, title: 'Lorem ipsum dolor', url: '#lorem' },
-                        { id: 3, title: 'Maecenas lacinia sem', url: '#maecenas' },
-                        { id: 4, title: 'Suspendisse fringilla', url: '#suspendisse' }
-                    ]
+                    title: '主页',
+                    url: '/'
                 },
                 {
                     id: 5,
-                    title: 'Portfolio',
-                    url: '#portfolio',
+                    title: '列表',
+                    url: '#blog',
                     subItems: [
                         { id: 6, title: 'Lorem ipsum dolor', url: '#lorem' },
                         { id: 7, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas' },

@@ -19,18 +19,13 @@ export default {
                 {
                     title: '个人主页',
                     icon: 'layui-icon-home',
-                    link: 'https://lxshuai.top/'
+                    link: '/'
                 },
                 {
                     title: '博客',
                     icon: 'layui-icon-template',
-                    link: 'https://www.lxshuai.top/'
-                },
-                {
-                    title: '图床',
-                    icon: 'layui-icon-carousel',
-                    link: 'https://pic.lxshuai.top/'
-                },
+                    link: '/blog'
+                }
             ]
         };
     },
