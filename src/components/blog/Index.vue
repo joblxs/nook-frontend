@@ -7,6 +7,7 @@
             <BlogList/>
         </div>
         <div class="col-other">
+            <InfoCard />
             <HotBlog />
         </div>
         <div style="clear: both"></div>
@@ -19,11 +20,12 @@
 import Navigation from "@/components/blog/common/Navigation.vue";
 import BlogList from "@/components/blog/common/BlogList.vue";
 import HotBlog from "@/components/blog/common/HotBlog.vue";
+import InfoCard from "@/components/blog/common/InfoCard.vue";
 import Footer from "@/components/common/Footer.vue";
 
 export default {
     name: 'BlogIndex',
-    components: {Footer, Navigation, BlogList, HotBlog}
+    components: {Footer, Navigation, BlogList, HotBlog, InfoCard}
 }
 </script>
 

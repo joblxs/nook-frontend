@@ -1,5 +1,5 @@
 <template>
-    <div class="other-item wow animate__animated animate__bounceInRight">
+    <div class="other-item wow animate__animated animate__zoomIn">
         <h5 class="other-item-title">热门文章</h5>
         <div class="inner">
             <ul class="hot-list-article">

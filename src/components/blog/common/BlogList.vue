@@ -215,6 +215,9 @@ export default {
 }
 
 @media screen and (max-width: 500px) {
+    .layui-fluid {
+        padding: 0;
+    }
     .article-item .title {
         padding-right: 0
     }

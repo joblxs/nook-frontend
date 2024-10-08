@@ -5,7 +5,7 @@
         <a href="javascript:void(0)" class="header-logo">Mr.li</a>
         <ul class="menu" id="nav">
             <li v-for="item in menuItems" :key="item.id">
-                <a :href="item.url">{{ item.title }} <span v-if="item.subItems" class="arrow">→</span></a>
+                <a :href="item.url">{{ item.title }} <span v-if="item.subItems" class="arrow"><lay-icon type="layui-icon-triangle-r"></lay-icon></span></a>
                 
                 <ul v-if="item.subItems" class="sub-menu">
                     <li v-for="subItem in item.subItems" :key="subItem.id">
