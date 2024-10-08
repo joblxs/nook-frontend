@@ -1,30 +1,35 @@
 <template>
-<div class="container">
-    <div class="header-fixed">
-        <!-- 网站logo -->
-        <a href="javascript:void(0)" class="header-logo">Mr.li</a>
-        <ul class="menu" id="nav">
-            <li v-for="item in menuItems" :key="item.id">
-                <a :href="item.url">{{ item.title }} <span v-if="item.subItems" class="arrow"><lay-icon type="layui-icon-triangle-r"></lay-icon></span></a>
-                
-                <ul v-if="item.subItems" class="sub-menu">
-                    <li v-for="subItem in item.subItems" :key="subItem.id">
-                        <a :href="subItem.url">{{ subItem.title }}</a>
-                    </li>
-                </ul>
-            </li>
-        </ul>
-        <a href="#" class="blog-search">
-            <lay-icon type="layui-icon-search"></lay-icon>
-        </a>
-        <!-- 手机菜单按钮 -->
-        <a class="phone-menu" @click="toggleNavMenu">
-            <i></i>
-            <i></i>
-            <i></i>
-        </a>
+    <div class="container">
+        <div class="header-fixed">
+            <!-- 网站logo -->
+            <a href="javascript:void(0)" class="header-logo">Mr.li</a>
+            <ul class="menu" id="nav">
+                <li v-for="item in menuItems" :key="item.id">
+                    <a :href="item.subItems ? 'javascript:void(0)' : item.url">
+                        {{ item.title }}
+                        <span v-if="item.subItems" class="arrow">
+                            <lay-icon type="layui-icon-triangle-r"></lay-icon>
+                        </span>
+                    </a>
+
+                    <ul v-if="item.subItems" class="sub-menu">
+                        <li v-for="subItem in item.subItems" :key="subItem.id">
+                            <a :href="subItem.url">{{ subItem.title }}</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <a href="#" class="blog-search">
+                <lay-icon type="layui-icon-search"></lay-icon>
+            </a>
+            <!-- 手机菜单按钮 -->
+            <a class="phone-menu" @click="toggleNavMenu">
+                <i></i>
+                <i></i>
+                <i></i>
+            </a>
+        </div>
     </div>
-</div>
 </template>
 
 <script>
@@ -43,12 +48,12 @@ export default {
                     title: '列表',
                     url: '#blog',
                     subItems: [
-                        { id: 6, title: 'Lorem ipsum dolor', url: '#lorem' },
-                        { id: 7, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas' },
-                        { id: 8, title: 'Suspendisse fringilla', url: '#suspendisse' },
-                        { id: 9, title: 'Lorem ipsum dolor', url: '#lorem' },
-                        { id: 10, title: 'Maecenas lacinia sem', url: '#maecenas' },
-                        { id: 11, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                        {id: 6, title: 'Lorem ipsum dolor', url: '#lorem'},
+                        {id: 7, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas'},
+                        {id: 8, title: 'Suspendisse fringilla', url: '#suspendisse'},
+                        {id: 9, title: 'Lorem ipsum dolor', url: '#lorem'},
+                        {id: 10, title: 'Maecenas lacinia sem', url: '#maecenas'},
+                        {id: 11, title: 'Suspendisse fringilla', url: '#suspendisse'}
                     ]
                 },
                 {
@@ -56,9 +61,9 @@ export default {
                     title: 'Clients',
                     url: '#clients',
                     subItems: [
-                        { id: 13, title: 'Lorem ipsum dolor', url: '#lorem' },
-                        { id: 14, title: 'Maecenas lacinia sem', url: '#maecenas' },
-                        { id: 15, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                        {id: 13, title: 'Lorem ipsum dolor', url: '#lorem'},
+                        {id: 14, title: 'Maecenas lacinia sem', url: '#maecenas'},
+                        {id: 15, title: 'Suspendisse fringilla', url: '#suspendisse'}
                     ]
                 },
                 {
@@ -66,9 +71,9 @@ export default {
                     title: 'Contact Me',
                     url: '#contact',
                     subItems: [
-                        { id: 17, title: 'Lorem ipsum dolor', url: '#lorem' },
-                        { id: 18, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas' },
-                        { id: 19, title: 'Suspendisse fringilla', url: '#suspendisse' }
+                        {id: 17, title: 'Lorem ipsum dolor', url: '#lorem'},
+                        {id: 18, title: 'Maecenas dignissim fermentum luctus', url: '#maecenas'},
+                        {id: 19, title: 'Suspendisse fringilla', url: '#suspendisse'}
                     ]
                 },
                 {
@@ -81,11 +86,11 @@ export default {
     },
     setup() {
         // 切换手机导航菜单的显示状态
-    const toggleNavMenu = () => {
-        const navMenu = document.getElementById('nav');
-        navMenu.style.display = navMenu.style.display === '' || navMenu.style.display === 'none' ? 'block' : 'none';
-    };
-    return {toggleNavMenu}
+        const toggleNavMenu = () => {
+            const navMenu = document.getElementById('nav');
+            navMenu.style.display = navMenu.style.display === '' || navMenu.style.display === 'none' ? 'block' : 'none';
+        };
+        return {toggleNavMenu}
     }
 }
 </script>
@@ -137,7 +142,7 @@ export default {
     line-height: 1;
     font-weight: 600;
     letter-spacing: -.05em;
-    background: transparent;		
+    background: transparent;
     text-shadow: 0 1px 1px var(--9-background-color);
     transition: all .25s ease-in-out;
 }
@@ -169,7 +174,7 @@ export default {
     background: #333;
     opacity: 1;
     visibility: visible;
-    box-shadow: 1px 1px 7px rgba(0,0,0,.5);
+    box-shadow: 1px 1px 7px rgba(0, 0, 0, .5);
     animation-name: swingdown;
     animation-duration: 1s;
     animation-timing-function: ease;
@@ -199,7 +204,7 @@ export default {
         transform: rotateX(90deg);
     }
 
-    30% {			
+    30% {
         transform: rotateX(-20deg) rotateY(5deg);
         animation-timing-function: ease-in-out;
     }
@@ -226,10 +231,10 @@ export default {
 }
 
 .menu li li a:hover {
-    color: rgba(0,223,252,1);
-    border-top: dotted 1px rgba(255,255,255,.15);
-    border-bottom: dotted 1px rgba(255,255,255,.15);
-    background: rgba(0,223,252,.02);
+    color: rgba(0, 223, 252, 1);
+    border-top: dotted 1px rgba(255, 255, 255, .15);
+    border-bottom: dotted 1px rgba(255, 255, 255, .15);
+    background: rgba(0, 223, 252, .02);
 }
 
 .phone-menu {
@@ -262,6 +267,7 @@ export default {
 .phone-menu i:nth-of-type(3) {
     top: 32px
 }
+
 @media screen and (min-width: 1025px) {
     .phone-menu {
         display: none
@@ -290,6 +296,7 @@ export default {
     .blog-search {
         left: 0
     }
+
     .container-fixed {
         width: 90%
     }
